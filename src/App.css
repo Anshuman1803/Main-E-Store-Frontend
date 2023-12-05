@@ -1,0 +1,821 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto Slab', serif;
+}
+
+#root {
+  background: url(./assests/bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.sliderContainer {
+  margin-top: 15px;
+  width: 100%;
+  height: 375px;
+  position: relative;
+  overflow: hidden;
+
+}
+.sliderPoster {
+  height: 100%;
+  width: 100%;
+}
+
+
+.appHeader {
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  background-color: #ecf7fb;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 105px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0em 2em;
+}
+
+.appHeader__LogoContainer {
+  width: 100px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.appHeader__Logo {
+  width: 40px;
+}
+
+.appHeader__StoreName {
+  font-size: 25px;
+  font-weight: 700;
+
+}
+
+.appHeader__StoreText {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.hamMenuClick {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  display: none;
+}
+
+.hamMenuClick:hover {
+  cursor: pointer;
+  background-color: aliceblue;
+}
+
+.userProfilecontainer {
+  /* border: 2px solid red; */
+  width: 200px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.navigateToButton {
+  width: 100px;
+  padding: 0.5em;
+  font-size: 18px;
+  background-color: white;
+  outline: none;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.userProfileIcon {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  background-color: antiquewhite;
+  color: tomato;
+  transition: background, color .3s ease-in-out;
+}
+
+.searchIconButton {
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background, color .3s ease-in-out;
+}
+
+.userProfileIcon:hover,
+.searchIconButton:hover {
+  cursor: pointer;
+  background-color: tomato;
+  color: antiquewhite;
+}
+
+.ItemsearchContainer {
+  background-image: url("https://www.elegantthemes.com/blog/wp-content/uploads/2021/12/woocommerce-product-search.png");
+  position: absolute;
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  top: 0;
+  width: 100%;
+  right: 0;
+  height: 100vh;
+  overflow: hidden;
+  transition: all .8s ease-in-out;
+  animation: fadeIN .9s ease-in-out;
+  z-index: 100;
+}
+
+@keyframes fadeIN {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+.MessageText {
+  position: absolute;
+  background-color: transparent;
+  width: 100%;
+  top: 50%;
+  left: 0%;
+  transform: translate(0%, -50%);
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+}
+
+.searchInputContainer {
+  border-radius: 50px;
+  margin: 15px auto;
+  width: 70%;
+  position: relative;
+}
+
+#searchInputBar {
+  font-size: 18px;
+  display: block;
+  width: 100%;
+  height: 50px;
+  padding: 0.5em 3em 0.5em 2.5em;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+}
+
+.closebuttonIcon {
+  width: 50px;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  font-size: 30px;
+  right: 0px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: tomato;
+  color: white;
+  cursor: pointer;
+}
+
+
+.searchedProdcutContainer {
+  backdrop-filter: blur(10px);
+  width: 100%;
+  height: calc(100vh - 90px);
+  overflow: hidden;
+  overflow-y: auto;
+  padding: 1em;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+  justify-content: center;
+  align-content: center;
+  gap: 20px;
+}
+
+.searchedProduct {
+  border-radius: 5px;
+  background-color: white;
+  width: 100%;
+  height: 300px;
+}
+
+.webNavBarContainer {
+  background-color: #ecf7fb;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em 2em;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.navItemContainer {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  text-decoration: none;
+  width: 120px;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  color: black;
+}
+
+.navItemContainer::before {
+  position: absolute;
+  top: 0px;
+  height: 100%;
+  backdrop-filter: blur(2px);
+  background-color: #ecf7fb81;
+  content: "";
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 18px;
+  border-radius: 5px;
+  display: none;
+}
+
+.navItemContainer:nth-child(1)::before {
+  content: "Home";
+}
+
+.navItemContainer:nth-child(2)::before {
+  content: "Mobile";
+}
+
+.navItemContainer:nth-child(3)::before {
+  content: "Laptop";
+}
+
+.navItemContainer:nth-child(4)::before {
+  content: "Camera";
+}
+
+.navItemContainer:nth-child(5)::before {
+  content: "Headphone";
+}
+
+.navItemContainer:nth-child(6)::before {
+  content: "Television";
+}
+
+.NavitemIcon {
+  width: 35px;
+}
+
+.navItemContainer:hover::before {
+  cursor: pointer;
+  display: flex;
+  animation: slideItemIN 0.8s ease-in-out;
+}
+
+.navItemContainer.active::before {
+  display: flex;
+  color: tomato;
+  z-index: 2;
+}
+
+.navItemContainer.active:hover::before {
+  animation: none;
+
+}
+
+@keyframes slideItemIN {
+  from {
+    top: 55px;
+    opacity: 0;
+  }
+
+  to {
+    top: 0;
+    opacity: 1;
+  }
+
+}
+
+.formContainer {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 20px;
+  background-image: url(./assests/formBG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right;
+  position: relative;
+}
+
+.gotoHomeLink {
+  text-decoration: none;
+  margin-top: 10px;
+  font-size: 18px;
+  color: white;
+  font-weight: 700;
+  text-align: none;
+  text-align: center;
+  width: 200px;
+  padding: 0.4em;
+  border-radius: 5px;
+  background-color: #1d93fa;
+}
+
+.gotoHomeLink:hover {
+  cursor: pointer;
+  background-color: #1979cc;
+}
+
+.userForm {
+  backdrop-filter: blur(10px);
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.432);
+  width: 400px;
+  animation: fadeIn 0.7s ease-in-out;
+  transition: all 0.7s ease-in;
+  opacity: 1;
+  width: 400px;
+  height: 530px;
+}
+
+.userLOGIN__form {
+  height: 400px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.userForm--heading {
+  border-bottom: 2px solid #06051460;
+  text-align: center;
+  padding: 0.5em;
+  font-weight: 600;
+}
+
+.inputBox {
+  width: 90%;
+  margin: 10px auto 0px auto;
+  height: 75px;
+  position: relative;
+}
+
+.inputErrorMsg {
+  margin: 5px 0px 0px 10px;
+  font-weight: 700;
+  font-style: italic;
+  color: #ff2400;
+  font-size: 14px;
+}
+
+.inputErrorMsg i {
+  color: #ff2400;
+  font-size: 16px;
+  margin-left: 5px;
+}
+
+.inputFilelds {
+
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.inputFilelds::placeholder {
+  font-weight: 500;
+  font-size: initial;
+  color: #f97316;
+}
+
+input[type="password"] {
+  padding-right: 2.5em;
+}
+
+.showPassBtnIcon {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 53%;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  font-weight: 700;
+}
+
+.showPassBtnIcon:hover {
+  cursor: pointer;
+  color: tomato;
+}
+
+.userForm--Buttons {
+  border: none;
+  outline: none;
+  display: block;
+  width: 200px;
+  margin: 10px auto 0px auto;
+  font-size: 18px;
+  padding: 0.4em;
+  background-color: #1d93fa;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+.userForm--Buttons:hover {
+  cursor: pointer;
+  background-color: #33A0FF;
+}
+
+.navigateButton {
+  margin-top: 20px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  color: #ff2400;
+  font-weight: 600;
+  transition: all 0.3s ease-in;
+}
+
+.navigateButton:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+/* loader  */
+.loaderContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.329);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  z-index: 5;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+svg {
+  stroke-dasharray: 269.7405090332031px;
+  stroke-dashoffset: 0;
+  animation: heartBeat 1.2s ease-in-out infinite;
+  transform: rotate(-90deg);
+  width: 90px;
+}
+
+@keyframes heartBeat {
+  from {
+    stroke-dashoffset: 269.7405090332031px;
+  }
+
+  to {
+    stroke-dashoffset: -269.7405090332031px;
+  }
+}
+
+/* dashboard */
+.dashboardContainer {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.dashboard__sidebar {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  background-image: linear-gradient(147deg, #f9fcff 0%, #dee4ea 74%);
+  position: relative;
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-repeat: repeat-y;
+  background-size: contain;
+  background-position: center;
+  width: 300px;
+  height: 100%;
+  padding-top: 2em;
+  color: #695cfe;
+}
+
+.UserName_initials {
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  margin: 0px auto;
+  margin-bottom: 30px;
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+  font-weight: 700;
+  color: #33A0FF;
+}
+
+.dashboard__sidebarItems {
+  border-radius: 50px;
+  color: #4f40fa;
+  display: block;
+  height: 55px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0em 1em;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.dashboard__sidebarItemsICON {
+  font-size: 25px;
+}
+
+.dashboard__sidebarItems:hover {
+  cursor: pointer;
+  background-color: white;
+  color: tomato;
+}
+
+.signoutButton {
+  border: none;
+  outline: none;
+  width: 200px;
+  padding: 0.5em;
+  font-weight: 700;
+  font-size: 18px;
+  background-color: #695cfe;
+  position: absolute;
+  bottom: 20px;
+  margin: 0px auto;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  border-radius: 20px;
+}
+
+.signoutButton:hover {
+  cursor: pointer;
+  background-color: #4f40fa;
+}
+
+.dashboard__sidebarItems.active {
+  box-shadow: none;
+  background-color: white;
+  color: tomato;
+}
+
+
+.dashboard__Section {
+  height: 100%;
+  width: 100%;
+}
+
+.dashboard__Section_Headers {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.397);
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 28px;
+  text-transform: capitalize;
+  color: #4f40fa;
+}
+
+.continueshopingButton {
+  border: none;
+  outline: none;
+  width: 300px;
+  padding: 0.3em;
+  font-size: 18px;
+  font-weight: 400;
+  border-radius: 30px;
+  background-color: #1979cc;
+  color: white;
+  text-transform: uppercase;
+}
+
+.continueshopingButton:hover {
+  cursor: pointer;
+  background-color: #156ab4;
+}
+
+.userProfile__UserBox {
+  border: 2px solid red;
+  width: 300px;
+  height: 350px;
+}
+
+.outletContainer {
+  background-image: url("./assests/dashboardBG.jpg");
+  background-position: left;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  width: calc(100% - 300px);
+  height: 100%;
+  overflow: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+
+
+.protectedAreaContainer {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.171);
+  z-index: 5;
+}
+
+.protectedBox {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  gap: 10px;
+  transform: translate(0%, -50%);
+  padding: 2em 0em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.protectedMessage {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.protectedLOCkIcon {
+  color: red;
+  font-size: 90px;
+}
+
+.protectedButtonsContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  gap: 50px;
+}
+
+.protectedNavigateToBtn {
+  border: 1px solid black;
+  outline: none;
+  border-radius: 10px;
+  padding: 0.5em;
+  width: 150px;
+  font-size: 20px;
+  font-weight: 700;
+  background-color: white;
+  transition: background .5s ease-in-out;
+}
+
+.protectedNavigateToBtn:hover {
+  cursor: pointer;
+  background-color: #1d93fa;
+  border: none;
+}
+
+@media screen and (max-width: 850px) {
+
+  .webNavBarContainer,
+  .userProfilecontainer {
+    display: none;
+  }
+
+  .hamMenuClick {
+    display: flex;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+  .searchInputContainer {
+    width: 98%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .appHeader {
+    padding: 0em 0.5em;
+  }
+
+  .formContainer {
+    padding: 0.5em 0em;
+  }
+
+  .userForm--heading {
+    font-size: 20px;
+  }
+
+  .userForm {
+    width: 95%;
+  }
+
+  #searchInputBar {
+    padding: 0.5em 3em 0.5em 0.5em;
+  }
+
+  .protectedMessage {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .protectedLOCkIcon {
+    color: red;
+    font-size: 50px;
+  }
+
+  .protectedButtonsContainer {
+    gap: 5px;
+  }
+
+}
