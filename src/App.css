@@ -7,6 +7,19 @@
   font-family: 'Roboto Slab', serif;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #695cfe;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: white;
+}
+
 #root {
   background: url(./assests/bg.jpg);
   background-size: cover;
@@ -15,23 +28,10 @@
   min-height: 100vh;
 }
 
-.sliderContainer {
-  margin-top: 15px;
-  width: 100%;
-  height: 375px;
-  position: relative;
-  overflow: hidden;
-
-}
-.sliderPoster {
-  height: 100%;
-  width: 100%;
-}
-
-
 .appHeader {
   box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
-  background-color: #ecf7fb;
+  background-color: rgba(255, 255, 255, 0.644);
+  backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
   width: 100%;
@@ -147,7 +147,7 @@
 
 .ItemsearchContainer {
   background-image: url("https://www.elegantthemes.com/blog/wp-content/uploads/2021/12/woocommerce-product-search.png");
-  position: absolute;
+  position: fixed;
   background-position: top;
   background-size: cover;
   background-repeat: no-repeat;
@@ -242,12 +242,14 @@
 }
 
 .webNavBarContainer {
-  background-color: #ecf7fb;
+  /* border: 2px solid red; */
+  /* background-color: #ecf7fb; */
   width: 100%;
   height: 80px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 10px;
   padding: 0.5em 2em;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
@@ -265,7 +267,7 @@
   border-radius: 10px;
   position: relative;
   cursor: pointer;
-  transition: all .3s ease-in-out;
+  transition: all .6s ease-in-out;
   color: black;
 }
 
@@ -317,12 +319,11 @@
 .navItemContainer:hover::before {
   cursor: pointer;
   display: flex;
-  animation: slideItemIN 0.8s ease-in-out;
+  animation: slideItemIN 0.6s ease-in-out;
 }
 
 .navItemContainer.active::before {
   display: flex;
-  color: tomato;
   z-index: 2;
 }
 
@@ -761,7 +762,89 @@ svg {
   border: none;
 }
 
-@media screen and (max-width: 850px) {
+
+.sliderContainer {
+  margin-top: 15px;
+  width: 100%;
+  height: 375px;
+  position: relative;
+  overflow: hidden;
+
+}
+
+.sliderPoster {
+  height: 100%;
+  width: 100%;
+}
+
+.homeProduct__Containers {
+  margin: 20px 0px;
+  width: 100%;
+  /* border: 2px solid red; */
+  height: 350px;
+}
+
+.homeProduct__ContainersHeader {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5em;
+  font-size: 35px;
+  text-transform: capitalize;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.281);
+}
+
+.homeProduct__Box {
+  /* border: 2px solid blue; */
+  position: relative;
+  height: calc(100% - 70px);
+  padding: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.homeProduct{
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  /* border-radius: 8cap; */
+  width: 250px;
+  height: 100%;
+}
+
+
+
+.homeProductPosterContainer{
+  border: 2px solid blue;
+  width: 100%;
+  height: 175px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  overflow: hidden;
+}
+
+.ProductPoster{
+ max-width: 150px;
+ max-height: 150px;
+ transition: all 0.4s ease-in-out;
+}
+
+.homeProduct__InformationContainer{
+  border: 2px solid red;
+  width: 100%;
+  height: calc(100% - 175px);
+}
+.productRating{
+  font-size: 30px;
+}
+.homeProduct:hover .ProductPoster{
+  transform: scale(0.9);
+}
+
+@media screen and (max-width: 771px) {
 
   .webNavBarContainer,
   .userProfilecontainer {
@@ -777,6 +860,9 @@ svg {
 @media screen and (max-width: 600px) {
   .searchInputContainer {
     width: 98%;
+  }
+  .sliderContainer {
+    height: 250px;
   }
 }
 
@@ -816,6 +902,9 @@ svg {
 
   .protectedButtonsContainer {
     gap: 5px;
+  }
+  .sliderContainer {
+    height: 200px;
   }
 
 }
