@@ -23,6 +23,8 @@ function HomeProductSlider({ productData, category }) {
             </div>
 
             <div className="homeProduct">
+            <i className="fa-regular fa-heart homeProductCommpnIConButton wishListButton"></i>
+                <i className="fa-regular fa-eye homeProductCommpnIConButton viewItemButton"></i>
                 <div className="homeProductPosterContainer">
                     <img src={productData[++currentIndex]?.images[0]} alt="ProductPoster" className="ProductPoster" />
                 </div>
@@ -34,6 +36,8 @@ function HomeProductSlider({ productData, category }) {
             </div>
 
             <div className="homeProduct">
+            <i className="fa-regular fa-heart homeProductCommpnIConButton wishListButton"></i>
+                <i className="fa-regular fa-eye homeProductCommpnIConButton viewItemButton"></i>
                 <div className="homeProductPosterContainer">
                     <img src={productData[++currentIndex]?.images[0]} alt="ProductPoster" className="ProductPoster" />
                 </div>
@@ -45,6 +49,8 @@ function HomeProductSlider({ productData, category }) {
             </div>
 
             <div className="homeProduct">
+            <i className="fa-regular fa-heart homeProductCommpnIConButton wishListButton"></i>
+                <i className="fa-regular fa-eye homeProductCommpnIConButton viewItemButton"></i>
                 <div className="homeProductPosterContainer">
                     <img src={productData[++currentIndex]?.images[0]} alt="ProductPoster" className="ProductPoster" />
                 </div>
@@ -56,6 +62,8 @@ function HomeProductSlider({ productData, category }) {
             </div>
 
             <div className="homeProduct">
+            <i className="fa-regular fa-heart homeProductCommpnIConButton wishListButton"></i>
+                <i className="fa-regular fa-eye homeProductCommpnIConButton viewItemButton"></i>
                 <div className="homeProductPosterContainer">
                     <img src={productData[++currentIndex]?.images[0]} alt="ProductPoster" className="ProductPoster" />
                 </div>
