@@ -780,8 +780,7 @@ svg {
 .homeProduct__Containers {
   margin: 20px 0px;
   width: 100%;
-  /* border: 2px solid red; */
-  height: 350px;
+  height: 395px;
 }
 
 .homeProduct__ContainersHeader {
@@ -797,7 +796,6 @@ svg {
 }
 
 .homeProduct__Box {
-  /* border: 2px solid blue; */
   position: relative;
   height: calc(100% - 70px);
   padding: 0.5em;
@@ -806,17 +804,48 @@ svg {
   justify-content: space-around;
   flex-wrap: wrap;
 }
-.homeProduct{
+
+.homeProduct {
+  border-radius: 10px;
   border: 1px solid rgba(0, 0, 0, 0.4);
-  /* border-radius: 8cap; */
   width: 250px;
   height: 100%;
+  position: relative;
 }
 
+.homeProductCommpnIConButton {
+  position: absolute;
+  right: 0;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  border-bottom-left-radius: 5px;
+}
 
+.wishListButton {
+  top: 0;
+}
+.viewItemButton {
+  top: 40px;
+}
 
-.homeProductPosterContainer{
-  border: 2px solid blue;
+.homeProductCommpnIConButton:hover{
+  cursor: pointer;
+  color: tomato;
+  background-color: #dee4ea46;
+}
+
+.homeProduct__discountPercentageText{
+  font-weight: 700;
+  font-size: 16px;
+  color: #1d93fa;
+}
+
+.homeProductPosterContainer {
+  border-radius: 10px;
   width: 100%;
   height: 175px;
   display: flex;
@@ -826,21 +855,43 @@ svg {
   overflow: hidden;
 }
 
-.ProductPoster{
- max-width: 150px;
- max-height: 150px;
- transition: all 0.4s ease-in-out;
+.ProductPoster {
+  border-radius: 10px;
+  max-width: 150px;
+  max-height: 150px;
+  transition: all 0.4s ease-in-out;
 }
 
-.homeProduct__InformationContainer{
-  border: 2px solid red;
+.homeProduct__InformationContainer {
   width: 100%;
   height: calc(100% - 175px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
 }
-.productRating{
-  font-size: 30px;
+
+.addToCartButton {
+  border: 1px solid black;
+  padding: 0.3em;
+  background-color: transparent;
+  outline: none;
+  width: 60%;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 20px;
 }
-.homeProduct:hover .ProductPoster{
+
+.addToCartButton:hover {
+  cursor: pointer;
+  color: tomato;
+}
+
+.homeProduct:hover{
+background-color: #dee4ea46;
+}
+.homeProduct:hover .ProductPoster {
   transform: scale(0.9);
 }
 
@@ -861,6 +912,7 @@ svg {
   .searchInputContainer {
     width: 98%;
   }
+
   .sliderContainer {
     height: 250px;
   }
@@ -903,6 +955,7 @@ svg {
   .protectedButtonsContainer {
     gap: 5px;
   }
+
   .sliderContainer {
     height: 200px;
   }
