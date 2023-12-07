@@ -131,6 +131,7 @@ const dispatch = useDispatch();
         <button className='userForm--Buttons' onClick={handleSingInClick}>Sign In</button>
 
         <Link to={'/user/register'} className='navigateButton'>New Here? Create an account </Link>
+        <Link to={'/user/admin'} className='navigateButton'>Admin ? Log In As Admin </Link>
       </form>
     </>
   )

@@ -394,6 +394,9 @@
 .userLOGIN__form {
   height: 400px;
 }
+.adminLOGIN__form{
+  height: 430px;
+}
 
 @keyframes fadeIn {
   from {
