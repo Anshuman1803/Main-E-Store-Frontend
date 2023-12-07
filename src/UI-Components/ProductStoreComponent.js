@@ -29,6 +29,7 @@ function ProductStoreComponent() {
     setIsloading(false);
   }, [category]);
 
+
   AllProduct.forEach((product) => {
     if (!allBrandName.includes(product.brand)) {
       allBrandName.push(product.brand)
@@ -45,6 +46,13 @@ function ProductStoreComponent() {
     filterContainer.classList.toggle("activeFilterBox")
   }
 
+  const handleClearFilterClick = (e) => {
+    setIsloading(true)
+    axios.get(`http://localhost:5000/api/product/${category}`).then((response) => {
+      setCurrentCategoryProduct(response.data);
+      setIsloading(false)
+    });
+  }
 
   return (
     <>
@@ -87,6 +95,8 @@ function ProductStoreComponent() {
             </div>
 
           </div>
+
+          <button className='clearFilterButton' onClick={handleClearFilterClick}>Clear</button>
         </div>
 
         <div className='commonProductContainer__ProductBox'>
