@@ -77,12 +77,13 @@ function AdminLogin() {
                     setTimeout(() => {
                         setIsUserLoading(false);
                         setadminDetails({
+                            "adminName": "",
                             "adminEmail": "",
                             "adminPassword": "",
                         })
                     }, 4000);
                 } else {
-                    toast.error('Admin Is Not Registred', {
+                    toast.error('Admin Not Registred', {
                         position: "top-center",
                         autoClose: 3000,
                         hideProgressBar: false,
@@ -95,6 +96,7 @@ function AdminLogin() {
                     setTimeout(() => {
                         setIsUserLoading(false);
                         setadminDetails({
+                            "adminName": "",
                             "adminEmail": "",
                             "adminPassword": "",
                         })
