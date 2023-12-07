@@ -394,7 +394,8 @@
 .userLOGIN__form {
   height: 400px;
 }
-.adminLOGIN__form{
+
+.adminLOGIN__form {
   height: 430px;
 }
 
@@ -700,6 +701,43 @@ svg {
   position: relative;
 }
 
+.admin__AllProductContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 240px));
+  grid-auto-rows: minmax(290px, 290px);
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1em;
+  height: 100%;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.AllProductBox {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  background-color: whitesmoke;
+}
+
+.homeProduct__titleText {
+  text-align: center;
+  color: #4f40fa;
+  font-weight: 700;
+  width: 95%;
+  font-size: 18px;
+}
+
+.AllProductBox .homeProduct__InformationContainer {
+  padding: 0.5em 0em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  /* border: 2px solid red; */
+  position: relative;
+}
 
 .protectedAreaContainer {
   width: 100%;
@@ -710,6 +748,32 @@ svg {
   backdrop-filter: blur(5px);
   background-color: rgba(255, 255, 255, 0.171);
   z-index: 5;
+}
+
+.homeProduct__IconButton {
+  position: absolute;
+  border-bottom-right-radius: 10px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  bottom: 0;
+  right: 0;
+}
+.homeProduct__DeleteIconButton{
+  border-radius: 0;
+  border-bottom-left-radius: 10px;
+  left: 0;
+}
+.homeProduct__IconButton:hover{
+cursor: pointer;
+color: tomato;
+}
+.homeProduct__EditIconButton:hover{
+cursor: pointer;
+color: #5cb85c;
 }
 
 .protectedBox {
@@ -968,7 +1032,8 @@ svg {
   padding: 0em 0.5em 0em 1em;
   font-weight: 500;
 }
-.clearFilterButton{
+
+.clearFilterButton {
   display: block;
   border: none;
   border-radius: 10px;
@@ -980,7 +1045,8 @@ svg {
   background-color: #695cfe;
   color: white;
 }
-.clearFilterButton:hover{
+
+.clearFilterButton:hover {
   cursor: pointer;
   background-color: rgb(68, 56, 198)
 }
@@ -1071,6 +1137,7 @@ svg {
   background-color: #dee4ea46;
   border: none;
 }
+
 
 @media screen and (max-width: 771px) {
 

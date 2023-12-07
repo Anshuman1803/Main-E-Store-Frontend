@@ -13,6 +13,7 @@ import Wishlist from '../UI-Components/DashBoard/Wishlist'
 import OrderHistory from '../UI-Components/DashBoard/OrderHistory'
 import AdminDashboardContainer from '../UI-Components/Admin/AdminDashboardContainer'
 import AddProduct from '../UI-Components/Admin/AddProduct'
+import AllProducts from '../UI-Components/Admin/AllProducts'
 
 function RouterComponent() {
   return (
@@ -34,7 +35,8 @@ function RouterComponent() {
       </Route>
 
       <Route path='/admin/dashboard' element={<AdminDashboardContainer />}>
-      <Route path='/admin/dashboard/createproduct' element={<AddProduct/>}/>
+      <Route path='/admin/dashboard/All-products' element={<AllProducts/>}/>
+      <Route path='/admin/dashboard/add-product' element={<AddProduct/>}/>
       </Route>
 
     </Routes>

@@ -19,7 +19,10 @@ function AdminDashboardContainer() {
       </div>}
       <aside className='dashboard__sidebar'>
         <div className='UserName_initials'>U</div>
-        <NavLink to='/admin/dashboard/createproduct' className="dashboard__sidebarItems"><i className="fa-solid fa-cart-plus dashboard__sidebarItemsICON"></i>Add Product</NavLink>
+
+        <NavLink to='/admin/dashboard/All-products' className="dashboard__sidebarItems"><i className="fa-solid fa-cart-shopping dashboard__sidebarItemsICON"></i>Products</NavLink>
+
+        <NavLink to='/admin/dashboard/add-product' className="dashboard__sidebarItems"><i className="fa-solid fa-cart-plus dashboard__sidebarItemsICON"></i>Add Product</NavLink>
 
         <button className='signoutButton' onClick={() => dispatch(adminLogOut())}>Sign Out</button>
       </aside>
