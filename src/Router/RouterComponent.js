@@ -11,7 +11,8 @@ import UserInfo from '../UI-Components/DashBoard/UserInfo'
 import Cart from '../UI-Components/DashBoard/Cart'
 import Wishlist from '../UI-Components/DashBoard/Wishlist'
 import OrderHistory from '../UI-Components/DashBoard/OrderHistory'
-import AdminDashboardContainer from '../UI-Components/DashBoard/AdminDashboardContainer'
+import AdminDashboardContainer from '../UI-Components/Admin/AdminDashboardContainer'
+import AddProduct from '../UI-Components/Admin/AddProduct'
 
 function RouterComponent() {
   return (
@@ -33,7 +34,7 @@ function RouterComponent() {
       </Route>
 
       <Route path='/admin/dashboard' element={<AdminDashboardContainer />}>
-       
+      <Route path='/admin/dashboard/createproduct' element={<AddProduct/>}/>
       </Route>
 
     </Routes>

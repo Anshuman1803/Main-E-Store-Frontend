@@ -1,5 +1,5 @@
 import React from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, useNavigate, NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { adminLogOut } from '../../ReduxSlice/AdminSlice';
 
@@ -19,6 +19,7 @@ function AdminDashboardContainer() {
       </div>}
       <aside className='dashboard__sidebar'>
         <div className='UserName_initials'>U</div>
+        <NavLink to='/admin/dashboard/createproduct' className="dashboard__sidebarItems"><i className="fa-solid fa-cart-plus dashboard__sidebarItemsICON"></i>Add Product</NavLink>
 
         <button className='signoutButton' onClick={() => dispatch(adminLogOut())}>Sign Out</button>
       </aside>
