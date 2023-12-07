@@ -36,9 +36,19 @@ function ProductStoreComponent() {
     }
   });
 
+  const scrollToTOP = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+
+  }
+
   const handleFilterOPTIONSClick = (e) => {
     console.log(e.currentTarget.textContent.split(" ")[0])
-    setCurrentCategoryProduct(AllProduct.filter((products) => products.category === e.currentTarget.textContent.split(" ")[0] || products.brand === e.currentTarget.textContent.split(" ")[0] || products.rating >= e.currentTarget.textContent.split(" ")[0] || products.discountPercentage <= Number(e.currentTarget.textContent.split(" ")[0])));
+    setCurrentCategoryProduct(AllProduct.filter((products) => (products.category === category) && (products.brand === e.currentTarget.textContent.split(" ")[0] || products.rating >= e.currentTarget.textContent.split(" ")[0] || products.discountPercentage <= Number(e.currentTarget.textContent.split(" ")[0]))));
+    scrollToTOP();
+
   }
 
   const handleFilterBUttonClick = (e) => {
@@ -52,6 +62,7 @@ function ProductStoreComponent() {
       setCurrentCategoryProduct(response.data);
       setIsloading(false)
     });
+    scrollToTOP();
   }
 
   return (
