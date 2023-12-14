@@ -4,20 +4,24 @@ import axios from 'axios'
 function AllProducts() {
     const [Allproduct, setAllProduct] = useState([]);
     const [isLoading, setIsloading] = useState(false);
-    useEffect(() => {
+
+    const loadProductFun = () => {
         setIsloading(true)
         axios.get("http://localhost:5000/api/product").then((response) => {
             setAllProduct(response.data)
         });
         setIsloading(false);
-    }, []);
+    }
+
+    useEffect(loadProductFun, []);
 
 
-    const handleProductDelete = (id)=>{
-        axios.post(`http://localhost:5000/api/admin/deleteproduct/${id}`).then((response)=>{
+    const handleProductDelete = (id) => {
+        setIsloading(true)
+        axios.post(`http://localhost:5000/api/admin/deleteproduct/${id}`).then((response) => {
             console.log(response.data)
+            loadProductFun();
         })
-
     }
     return (
         <>
@@ -32,9 +36,9 @@ function AllProducts() {
                                 <div className="homeProduct__InformationContainer">
                                     <span className='homeProduct__titleText'>{product?.title.slice(0, 15)}...</span>
                                     <span className='homeProduct__titleText'>₹ {product?.Dprice}</span>
-                                    <i  title='Edit Product' className="fa-regular fa-pen-to-square homeProduct__IconButton homeProduct__EditIconButton"></i>
+                                    <i title='Edit Product' className="fa-regular fa-pen-to-square homeProduct__IconButton homeProduct__EditIconButton"></i>
 
-                                    <i title='Delete Product' className="fa-regular fa-trash-can homeProduct__IconButton homeProduct__DeleteIconButton" onClick={()=>handleProductDelete(product.id)}></i>
+                                    <i title='Delete Product' className="fa-regular fa-trash-can homeProduct__IconButton homeProduct__DeleteIconButton" onClick={() => handleProductDelete(product.id)}></i>
                                 </div>
                             </div>
                         })
