@@ -123,7 +123,7 @@ function ProductStoreComponent() {
                         <i className="fa-regular fa-heart homeProductCommpnIConButton wishListButton"></i>
                         <i className="fa-regular fa-eye homeProductCommpnIConButton viewItemButton"></i>
                         <div className="homeProductPosterContainer">
-                          <img src={productData?.images[0]} alt="ProductPoster" className="ProductPoster" />
+                          <img src={productData?.images.LinkOne} alt="ProductPoster" className="ProductPoster" />
                         </div>
                         <div className="homeProduct__InformationContainer">
                           <RatingComponent rating={productData?.rating} />

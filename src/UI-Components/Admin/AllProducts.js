@@ -31,7 +31,7 @@ function AllProducts() {
                         Allproduct.map((product) => {
                             return <div className="AllProductBox" key={product.id}>
                                 <div className="homeProductPosterContainer">
-                                    <img src={product?.images[0]} alt="ProductPoster" className="ProductPoster" />
+                                    <img src={product?.images.LinkOne} alt="ProductPoster" className="ProductPoster" />
                                 </div>
                                 <div className="homeProduct__InformationContainer">
                                     <span className='homeProduct__titleText'>{product?.title.slice(0, 15)}...</span>

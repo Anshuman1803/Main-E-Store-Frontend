@@ -13,7 +13,7 @@ function HomeProductSlider({ productData, category }) {
                 <i className="fa-regular fa-heart homeProductCommpnIConButton wishListButton"></i>
                 <i className="fa-regular fa-eye homeProductCommpnIConButton viewItemButton"></i>
                 <div className="homeProductPosterContainer">
-                    <img src={productData[currentIndex]?.images[0]} alt="ProductPoster" className="ProductPoster" />
+                    <img src={productData[currentIndex]?.images.LinkOne} alt="ProductPoster" className="ProductPoster" />
                 </div>
                 <div className="homeProduct__InformationContainer">
                     <RatingComponent rating={productData[currentIndex]?.rating} />
@@ -26,7 +26,7 @@ function HomeProductSlider({ productData, category }) {
             <i className="fa-regular fa-heart homeProductCommpnIConButton wishListButton"></i>
                 <i className="fa-regular fa-eye homeProductCommpnIConButton viewItemButton"></i>
                 <div className="homeProductPosterContainer">
-                    <img src={productData[++currentIndex]?.images[0]} alt="ProductPoster" className="ProductPoster" />
+                    <img src={productData[++currentIndex]?.images.LinkOne} alt="ProductPoster" className="ProductPoster" />
                 </div>
                 <div className="homeProduct__InformationContainer">
                     <RatingComponent rating={productData[currentIndex]?.rating} />
@@ -39,7 +39,7 @@ function HomeProductSlider({ productData, category }) {
             <i className="fa-regular fa-heart homeProductCommpnIConButton wishListButton"></i>
                 <i className="fa-regular fa-eye homeProductCommpnIConButton viewItemButton"></i>
                 <div className="homeProductPosterContainer">
-                    <img src={productData[++currentIndex]?.images[0]} alt="ProductPoster" className="ProductPoster" />
+                    <img src={productData[++currentIndex]?.images.LinkOne} alt="ProductPoster" className="ProductPoster" />
                 </div>
                 <div className="homeProduct__InformationContainer">
                     <RatingComponent rating={productData[currentIndex]?.rating} />
@@ -52,7 +52,7 @@ function HomeProductSlider({ productData, category }) {
             <i className="fa-regular fa-heart homeProductCommpnIConButton wishListButton"></i>
                 <i className="fa-regular fa-eye homeProductCommpnIConButton viewItemButton"></i>
                 <div className="homeProductPosterContainer">
-                    <img src={productData[++currentIndex]?.images[0]} alt="ProductPoster" className="ProductPoster" />
+                    <img src={productData[++currentIndex]?.images.LinkOne} alt="ProductPoster" className="ProductPoster" />
                 </div>
                 <div className="homeProduct__InformationContainer">
                     <RatingComponent rating={productData[currentIndex]?.rating} />
@@ -65,7 +65,7 @@ function HomeProductSlider({ productData, category }) {
             <i className="fa-regular fa-heart homeProductCommpnIConButton wishListButton"></i>
                 <i className="fa-regular fa-eye homeProductCommpnIConButton viewItemButton"></i>
                 <div className="homeProductPosterContainer">
-                    <img src={productData[++currentIndex]?.images[0]} alt="ProductPoster" className="ProductPoster" />
+                    <img src={productData[++currentIndex]?.images.LinkOne} alt="ProductPoster" className="ProductPoster" />
                 </div>
                 <div className="homeProduct__InformationContainer">
                     <RatingComponent rating={productData[currentIndex]?.rating} />

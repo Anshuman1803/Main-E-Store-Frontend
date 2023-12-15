@@ -750,8 +750,26 @@ svg {
   padding: 0.5em 1em;
   gap: 10px;
   border-radius: 5px;
+  position: relative;
 }
-
+.calDiscountPriceButton{
+position: absolute;
+top: 5px;
+right: 25px;
+padding: 0.2em;
+width: 50px;
+border-radius: 5px;
+border: none;
+outline: none;
+background-color: #4f40fa;
+color: white;
+cursor: pointer;
+font-size: 16px;
+}
+.generateIDButton{
+  width: 150px;
+  background-color: #1d93fa;
+}
 .addProduct_formItemBox_button {
   border: none;
   border-top: 1px solid rgba(0, 0, 0, 0.678);
