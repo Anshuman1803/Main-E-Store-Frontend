@@ -11,7 +11,7 @@ function UserInfo() {
   console.log(userDetails)
   return (
     <section className='dashboard__Section'>
-      <h3 className='dashboard__Section_Headers'>Welcome {userDetails[0]?.userName}, To Your Dashboard</h3>
+      <h3 className='dashboard__Section_Headers'>Welcome {userDetails[0]?.userName}</h3>
 
 
 
