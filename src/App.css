@@ -646,10 +646,131 @@ svg {
   color: tomato;
 }
 
+.adminprofile {
+  border-radius: 0;
+  background-color: transparent;
+  border-bottom: 1px solid black;
+}
+
+.adminprofile.active {
+  background-color: transparent;
+  color: #4f40fa;
+}
 
 .dashboard__Section {
   height: 100%;
   width: 100%;
+}
+
+.adminDashboard__adminProfileContainer {
+  height: 100%;
+}
+
+.adminProfileContainer__heading {
+  font-size: 1.7vw;
+  border-bottom: 1px solid black;
+  padding: 0.6em;
+  text-align: center;
+  color: #1979cc;
+}
+
+.admindashboard_cardContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.applicationCounterCards {
+  width: 100%;
+  min-height: 85vh;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+  align-items: center;
+  justify-content: space-around;
+  gap: 30px;
+  padding: 1em;
+}
+
+.admindashboard_cards {
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  background-color: white;
+  border-radius: 10px;
+  width: 100%;
+  height: 175px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admindashboard_cardItemheading {
+  font-size: 20px;
+  font-weight: 600;
+  color: #5cb85c;
+}
+
+.admindashboard_counter {
+  font-size: 30px;
+  font-weight: 700;
+  color: #1d93fa;
+}
+
+.adminPasswordUpdateContainer {
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.253);
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.passwordUpdateCompo_container {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+width: 450px;
+  min-height: 450px;
+}
+.passwordUpdateCompo_container .loaderContainer{
+  border-radius: 10px;
+  backdrop-filter: none;
+}
+
+.updateCompo_heading {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.144);
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  padding: 0.5em;
+  color: #f97316;
+  letter-spacing: 3px;
+}
+
+.updatepopup_itemBox {
+  width: 100% !important;
+  margin-top: 10px;
+  min-height: 100px !important;
+  border-radius: 0 !important;
+}
+
+.updatePasswordButton {
+  display: block;
+  margin: 10px auto;
+  background-color: #5cb85c;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  width: 320px;
+  padding: 0.6em;
+  font-size: 16px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 .dashboard__Section_Headers {
@@ -719,16 +840,14 @@ svg {
 
 .addProduct__mainHeading {
   text-align: center;
-  margin: 20px auto;
-  font-size: 2vw;
+  font-size: 22px;
   font-weight: 600;
   color: #33A0FF;
   border-bottom: 1px solid rgba(128, 128, 128, 0.671);
-  padding-bottom: 1em;
+  padding: 1em 0em;
 }
 
 .addProduct__FormContainer {
-  border: 2px solid red;
   width: 100%;
   display: flex;
   align-items: center;
@@ -741,7 +860,7 @@ svg {
 .addProduct_formItemBox {
   border: 1px solid rgba(0, 0, 0, 0.089);
   width: 100%;
-  width: 475px;
+  width: 480px;
   min-height: 90px;
   display: flex;
   align-items: flex-start;
@@ -752,24 +871,27 @@ svg {
   border-radius: 5px;
   position: relative;
 }
-.calDiscountPriceButton{
-position: absolute;
-top: 5px;
-right: 25px;
-padding: 0.2em;
-width: 50px;
-border-radius: 5px;
-border: none;
-outline: none;
-background-color: #4f40fa;
-color: white;
-cursor: pointer;
-font-size: 16px;
+
+.calDiscountPriceButton {
+  position: absolute;
+  top: 5px;
+  right: 25px;
+  padding: 0.2em;
+  width: 50px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background-color: #4f40fa;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
 }
-.generateIDButton{
+
+.generateIDButton {
   width: 150px;
   background-color: #1d93fa;
 }
+
 .addProduct_formItemBox_button {
   border: none;
   border-top: 1px solid rgba(0, 0, 0, 0.678);
@@ -1160,6 +1282,7 @@ input::-webkit-inner-spin-button {
   padding: 0.7em;
   background-color: #695cfe;
   color: white;
+
 }
 
 .clearFilterButton:hover {
@@ -1187,7 +1310,7 @@ input::-webkit-inner-spin-button {
 
 .filterContainer__FilterBox {
   width: 100%;
-  height: calc(100% - 50px);
+  min-height: calc(100% - 50px);
   gap: 10px;
 
 }
@@ -1254,6 +1377,81 @@ input::-webkit-inner-spin-button {
   border: none;
 }
 
+.dashboardHamMenuClick {
+  position: absolute;
+  z-index: 11;
+  right: 10px;
+  top: 5px;
+  width: 35px;
+  height: 35px;
+  font-size: 18px;
+  background-color: white;
+}
+
+.confirmationPopup_conainer {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.192);
+  backdrop-filter: blur(10px);
+  display: flex;
+}
+
+.ConfirmationPopup_box {
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  background-color: white;
+  margin: auto;
+  width: 450px;
+  height: 250px;
+  border-radius: 10px;
+}
+
+.confirmationBox_heading {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.308);
+  font-size: 18px;
+  text-align: center;
+  padding: 1em;
+}
+
+.confirmationButton_box {
+  width: 100%;
+  height: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+.confirmationButtons {
+  width: 150px;
+  border: none;
+  padding: 0.8em;
+  font-size: 16px;
+  border-radius: 5px;
+  color: white;
+}
+
+.confirmationButtons:nth-child(1) {
+  background-color: #ff2400;
+
+}
+
+.confirmationButtons:nth-child(2) {
+  background-color: #5ba75b;
+}
+
+.confirmationButtons:hover {
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+
+@media screen and (max-width : 1024px) {
+.adminProfileContainer__heading{
+  font-size: 3vw;
+}  
+}
 
 @media screen and (max-width: 771px) {
 
@@ -1277,6 +1475,13 @@ input::-webkit-inner-spin-button {
     overflow-y: scroll;
   }
 
+  .filterContainer__closeButton {
+    display: flex;
+    height: 30px;
+    width: 30px;
+    font-size: 20px;
+  }
+
   .activeFilterBox {
     display: none;
   }
@@ -1291,10 +1496,32 @@ input::-webkit-inner-spin-button {
     z-index: 2;
   }
 
-  .filterContainer__closeButton {
-    display: flex;
+  .dashboard__sidebar {
+    display: none;
   }
 
+  .activeDashboard__sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 100vh;
+    display: block;
+    z-index: 10;
+  }
+
+  .outletContainer {
+    width: 100%;
+  }
+  .adminProfileContainer__heading{
+    font-size: 4.5vw;
+  } 
+}
+
+@media screen and (max-width: 650px) {
+  .activeDashboard__sidebar {
+   width: 60%;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -1353,4 +1580,23 @@ input::-webkit-inner-spin-button {
     width: 100%;
   }
 
+  .generateIDButton {
+    width: 100px;
+    background-color: #1d93fa;
+  }
+  .adminProfileContainer__heading{
+    font-size: 5.5vw;
+  } 
+  .passwordUpdateCompo_container{
+    width: 95%;
+  }
+  .updatePasswordButton{
+    width: 80%;
+  }
+  .updateCompo_heading{
+    font-size: 16px;
+  }
+  .activeDashboard__sidebar {
+    width: 100%;
+   }
 }

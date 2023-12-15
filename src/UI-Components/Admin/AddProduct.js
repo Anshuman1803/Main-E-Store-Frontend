@@ -91,6 +91,7 @@ function AddProduct() {
       setNewProduct({ ...newProduct, [e.target.name]: e.target.value.trim() });
     }
   }
+  
   const handleLinkInputOnChange = (e) => {
     setMessage({
       "IsError__id": false,

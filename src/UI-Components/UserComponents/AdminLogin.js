@@ -15,9 +15,9 @@ function AdminLogin() {
     const [Message, setMessage] = useState({ "IsNameMsgActive": false, "IsPassMsgActive": false, "IsEmailMsgActive": false, "msgVal": "" });
 
     const [adminDetails, setadminDetails] = useState({
-        "adminName": "",
-        "adminEmail": "",
-        "adminPassword": "",
+        "userName": "",
+        "userEmail": "",
+        "userPassword": "",
     });
     const handleClickShowPassword = (e) => {
         setIsShowPass(!IsShowPass);
@@ -33,12 +33,12 @@ function AdminLogin() {
 
     const handleSingInClick = (e) => {
         e.preventDefault();
-        if (adminDetails.adminName.length === 0) {
+        if (adminDetails.userName.length === 0) {
             setMessage({ "msgVal": "Enter Admin Name", "IsEmailMsgActive": false, "IsPassMsgActive": false, "IsNameMsgActive": true })
         }
-        else if (adminDetails.adminEmail.length === 0) {
+        else if (adminDetails.userEmail.length === 0) {
             setMessage({ "msgVal": "Enter Your Email", "IsEmailMsgActive": true, "IsPassMsgActive": false, "IsNameMsgActive": false })
-        } else if (adminDetails.adminPassword.length === 0) {
+        } else if (adminDetails.userPassword.length === 0) {
             setMessage({ "msgVal": "Password Can't be Empty.", "IsPassMsgActive": true, "IsEmailMsgActive": false, "IsNameMsgActive": false })
         } else {
 
@@ -77,9 +77,9 @@ function AdminLogin() {
                     setTimeout(() => {
                         setIsUserLoading(false);
                         setadminDetails({
-                            "adminName": "",
-                            "adminEmail": "",
-                            "adminPassword": "",
+                            "userName": "",
+                            "userEmail": "",
+                            "userPassword": "",
                         })
                     }, 4000);
                 } else {
@@ -96,9 +96,9 @@ function AdminLogin() {
                     setTimeout(() => {
                         setIsUserLoading(false);
                         setadminDetails({
-                            "adminName": "",
-                            "adminEmail": "",
-                            "adminPassword": "",
+                            "userName": "",
+                            "userEmail": "",
+                            "userPassword": "",
                         })
                     }, 4000);
                 }
@@ -124,18 +124,18 @@ function AdminLogin() {
             <form className='userForm adminLOGIN__form'>
                 <h2 className='userForm--heading'>Admin - Get Access</h2>
                 <div className="inputBox">
-                    <input type="text" name='adminName' id='adminName' placeholder='Enter Your User Name' className='inputFilelds' value={adminDetails.adminName} onChange={handleOnChangeInput} />
+                    <input type="text" name='userName' id='userName' placeholder='Enter Your User Name' className='inputFilelds' value={adminDetails.userName} onChange={handleOnChangeInput} />
 
                     {Message.IsNameMsgActive && <p className='inputErrorMsg'>{Message.msgVal}<i className="fa-solid fa-triangle-exclamation"></i></p>}
                 </div>
                 <div className="inputBox">
-                    <input type="email" name='adminEmail' id='adminEmail' placeholder='Enter Your Email' className='inputFilelds' value={adminDetails.adminEmail} onChange={handleOnChangeInput} />
+                    <input type="email" name='userEmail' id='userEmail' placeholder='Enter Your Email' className='inputFilelds' value={adminDetails.userEmail} onChange={handleOnChangeInput} />
 
                     {Message.IsEmailMsgActive && <p className='inputErrorMsg'>{Message.msgVal}<i className="fa-solid fa-triangle-exclamation"></i></p>}
                 </div>
 
                 <div className="inputBox">
-                    <input type={IsShowPass ? "text" : "password"} name='adminPassword' id='adminPassword' placeholder='Enter Your Password' className='inputFilelds' value={adminDetails.adminPassword} onChange={handleOnChangeInput} autoComplete='adminPassword' />
+                    <input type={IsShowPass ? "text" : "password"} name='userPassword' id='userPassword' placeholder='Enter Your Password' className='inputFilelds' value={adminDetails.userPassword} onChange={handleOnChangeInput} autoComplete='userPassword' />
 
                     <i className={`fa-regular ${IsShowPass ? "fa-eye-slash" : "fa-eye"} showPassBtnIcon`} onClick={handleClickShowPassword}></i>
                     {Message.IsPassMsgActive && <p className='inputErrorMsg'>{Message.msgVal}<i className="fa-solid fa-triangle-exclamation"></i> </p>}

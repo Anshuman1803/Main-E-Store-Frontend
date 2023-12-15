@@ -5,7 +5,7 @@ import { userLogOut } from '../../ReduxSlice/CartSlice';
 function DashboardContainer() {
 const navigateTo = useNavigate();
   const dispatch = useDispatch();
-  const { isLoggedIN } = useSelector((state) => state.MsCart.UserCart);
+  const { isLoggedIN, userDetails } = useSelector((state) => state.MsCart.UserCart);
   return (
 
     <section className='dashboardContainer'>
@@ -19,7 +19,7 @@ const navigateTo = useNavigate();
        </div>
       </div> }
       <aside className='dashboard__sidebar'>
-        <div className='UserName_initials'>U</div>
+        <div className='UserName_initials'>{isLoggedIN ? (userDetails[0].userName[0]) : "U"}</div>
         <NavLink to='/user/dashboard/userprofile' className="dashboard__sidebarItems"><i className="fa-solid fa-user-tie dashboard__sidebarItemsICON"></i>User Profile</NavLink>
         <NavLink to='/user/dashboard/cart' className="dashboard__sidebarItems"><i className="fa-solid fa-cart-shopping dashboard__sidebarItemsICON"></i>Cart</NavLink>
         <NavLink to='/user/dashboard/wishlist' className="dashboard__sidebarItems"><i className="fa-solid fa-heart dashboard__sidebarItemsICON"></i>WishList</NavLink>
