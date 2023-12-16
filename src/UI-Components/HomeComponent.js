@@ -33,30 +33,11 @@ function HomeComponent() {
       {
         isLoading ? <Loader /> : <>
 
-         <section className='homeProduct__Containers'>
-            <h1 className='homeProduct__ContainersHeader'>best of mobile</h1>
-            <HomeProductSlider productData={productMobile} />
-          </section>
-
-          <section className='homeProduct__Containers'>
-            <h1 className='homeProduct__ContainersHeader'>best of laptop</h1>
-            <HomeProductSlider productData={productLaptop} />
-          </section>
-
-          <section className='homeProduct__Containers'>
-            <h1 className='homeProduct__ContainersHeader'>best of camera</h1>
-            <HomeProductSlider productData={productCamera} />
-          </section>
-
-          <section className='homeProduct__Containers'>
-            <h1 className='homeProduct__ContainersHeader'>best of headphone</h1>
-            <HomeProductSlider productData={productHeadphone} />
-          </section>
-
-          <section className='homeProduct__Containers'>
-            <h1 className='homeProduct__ContainersHeader'>best of television</h1>
-            <HomeProductSlider productData={productTelevision} />
-          </section>
+          <HomeProductSlider productData={productMobile} category={"mobile"} />
+          <HomeProductSlider productData={productLaptop} category={"laptop"} />
+          <HomeProductSlider productData={productCamera} category={"Camera"} />
+          <HomeProductSlider productData={productHeadphone} category={"headphone"} />
+          <HomeProductSlider productData={productTelevision} category={"television"} />
         </>
       }
 

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import WebNavBarComponent from './WebNavBarComponent'
 import HeaderComponents from './HeaderComponents'
 import RatingComponent from "./MUI-Components/RatingComponent"
 import Loader from './Loader'
 import axios from 'axios'
 function ProductStoreComponent() {
+  const navigateTO = useNavigate()
   const [AllProduct, setAllProduct] = useState([])
   const category = useParams().category;
   const allBrandName = []
@@ -64,6 +65,10 @@ function ProductStoreComponent() {
     });
     scrollToTOP();
   }
+  const handleShowProductClick = (e, ID, title, category)=>{
+    e.preventDefault();
+    navigateTO(`/products/${title.slice(0, 5)}${category}-${ID}`)
+  }
 
   return (
     <>
@@ -121,7 +126,7 @@ function ProductStoreComponent() {
                     currentCategoryProduct?.map((productData, index) => {
                       return <div className="homeProduct commonContainerProduct" key={productData.id + index}>
                         <i className="fa-regular fa-heart homeProductCommpnIConButton wishListButton"></i>
-                        <i className="fa-regular fa-eye homeProductCommpnIConButton viewItemButton"></i>
+                        <i className="fa-regular fa-eye homeProductCommpnIConButton viewItemButton" onClick={(e)=>handleShowProductClick(e, productData.id, productData.title, productData.category)}></i>
                         <div className="homeProductPosterContainer">
                           <img src={productData?.images.LinkOne} alt="ProductPoster" className="ProductPoster" />
                         </div>

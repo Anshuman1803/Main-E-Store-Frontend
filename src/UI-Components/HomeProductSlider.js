@@ -1,79 +1,49 @@
-import React, { useState } from 'react'
 import RatingComponent from './MUI-Components/RatingComponent';
 function HomeProductSlider({ productData, category }) {
 
-    let [currentIndex] = useState(0);
+    const handleNextBtnClick = (e) => {
+        e.preventDefault();
+        let box = e.target.previousSibling
+        box.scrollLeft = box.scrollLeft + 310
+    }
+
+    const handlePrevBtnClick = (e) => {
+        e.preventDefault();
+        let box = e.target.nextSibling
+        box.scrollLeft = box.scrollLeft - 310
+    }
 
 
     return (
-        <div className='homeProduct__Box'>
-            {/* <i className="fa-solid fa-caret-left leftArrow sliderArrow"></i>
-            <i className="fa-solid fa-caret-right rightArrow sliderArrow"></i> */}
-            <div className="homeProduct">
-                <i className="fa-regular fa-heart homeProductCommpnIConButton wishListButton"></i>
-                <i className="fa-regular fa-eye homeProductCommpnIConButton viewItemButton"></i>
-                <div className="homeProductPosterContainer">
-                    <img src={productData[currentIndex]?.images.LinkOne} alt="ProductPoster" className="ProductPoster" />
-                </div>
-                <div className="homeProduct__InformationContainer">
-                    <RatingComponent rating={productData[currentIndex]?.rating} />
-                    <span className='homeProduct__discountPercentageText'>{productData[currentIndex]?.discountPercentage} % Off</span>
-                    <button className='addToCartButton'>Add To Cart</button>
-                </div>
-            </div>
 
-            <div className="homeProduct">
-            <i className="fa-regular fa-heart homeProductCommpnIConButton wishListButton"></i>
-                <i className="fa-regular fa-eye homeProductCommpnIConButton viewItemButton"></i>
-                <div className="homeProductPosterContainer">
-                    <img src={productData[++currentIndex]?.images.LinkOne} alt="ProductPoster" className="ProductPoster" />
-                </div>
-                <div className="homeProduct__InformationContainer">
-                    <RatingComponent rating={productData[currentIndex]?.rating} />
-                    <span className='homeProduct__discountPercentageText'>{productData[currentIndex]?.discountPercentage} % Off</span>
-                    <button className='addToCartButton'>Add To Cart</button>
-                </div>
-            </div>
+        <section className='homeProduct__SliderContainers'>
+            <h1 className='homeProduct__ContainersHeader'>best of {category}</h1>
+            <i className="fa-solid fa-caret-left leftArrow sliderArrow" onClick={handlePrevBtnClick} ></i>
+            <div className='homeProduct__SliderBox'>
 
-            <div className="homeProduct">
-            <i className="fa-regular fa-heart homeProductCommpnIConButton wishListButton"></i>
-                <i className="fa-regular fa-eye homeProductCommpnIConButton viewItemButton"></i>
-                <div className="homeProductPosterContainer">
-                    <img src={productData[++currentIndex]?.images.LinkOne} alt="ProductPoster" className="ProductPoster" />
-                </div>
-                <div className="homeProduct__InformationContainer">
-                    <RatingComponent rating={productData[currentIndex]?.rating} />
-                    <span className='homeProduct__discountPercentageText'>{productData[currentIndex]?.discountPercentage} % Off</span>
-                    <button className='addToCartButton'>Add To Cart</button>
-                </div>
-            </div>
+                {
+                    productData.map((product) => {
+                        return <div className="homeProduct" key={product._id}>
+                            <i className="fa-regular fa-heart homeProductCommpnIConButton wishListButton"></i>
+                            <i className="fa-regular fa-eye homeProductCommpnIConButton viewItemButton"></i>
+                            <div className="homeProductPosterContainer">
+                                <img src={product?.images.LinkOne} alt="ProductPoster" className="ProductPoster" />
+                            </div>
+                            <div className="homeProduct__InformationContainer">
+                                <RatingComponent rating={product?.rating} />
+                                <span className='homeProduct__discountPercentageText'>{product?.discountPercentage} % Off</span>
+                                <button className='addToCartButton'>Add To Cart</button>
+                            </div>
+                        </div>
+                    })
+                }
 
-            <div className="homeProduct">
-            <i className="fa-regular fa-heart homeProductCommpnIConButton wishListButton"></i>
-                <i className="fa-regular fa-eye homeProductCommpnIConButton viewItemButton"></i>
-                <div className="homeProductPosterContainer">
-                    <img src={productData[++currentIndex]?.images.LinkOne} alt="ProductPoster" className="ProductPoster" />
-                </div>
-                <div className="homeProduct__InformationContainer">
-                    <RatingComponent rating={productData[currentIndex]?.rating} />
-                    <span className='homeProduct__discountPercentageText'>{productData[currentIndex]?.discountPercentage} % Off</span>
-                    <button className='addToCartButton'>Add To Cart</button>
-                </div>
-            </div>
 
-            <div className="homeProduct">
-            <i className="fa-regular fa-heart homeProductCommpnIConButton wishListButton"></i>
-                <i className="fa-regular fa-eye homeProductCommpnIConButton viewItemButton"></i>
-                <div className="homeProductPosterContainer">
-                    <img src={productData[++currentIndex]?.images.LinkOne} alt="ProductPoster" className="ProductPoster" />
-                </div>
-                <div className="homeProduct__InformationContainer">
-                    <RatingComponent rating={productData[currentIndex]?.rating} />
-                    <span className='homeProduct__discountPercentageText'>{productData[currentIndex]?.discountPercentage} % Off</span>
-                    <button className='addToCartButton'>Add To Cart</button>
-                </div>
             </div>
-        </div>
+            <i className="fa-solid fa-caret-right rightArrow sliderArrow" onClick={handleNextBtnClick}></i>
+
+        </section>
+
     )
 }
 
