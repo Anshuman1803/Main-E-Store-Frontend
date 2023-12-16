@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Outlet, useNavigate, NavLink, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { adminLogOut } from '../../ReduxSlice/AdminSlice';
-import PasswordUpdate from './PasswordUpdate';
 import axios from 'axios'
 import Loader from '../Loader';
 function AdminDashboardContainer() {
@@ -86,9 +85,6 @@ function AdminDashboardContainer() {
                 </div>
               </div>
 
-              <div className="adminPasswordUpdateContainer">
-                <PasswordUpdate />
-              </div>
 
             </div>
 
