@@ -26,8 +26,8 @@ function ProductStoreComponent() {
     setIsloading(true)
     axios.get("http://localhost:5000/api/product").then((response) => {
       setAllProduct(response.data.filter((product) => product.category === category))
+      setIsloading(false);
     });
-    setIsloading(false);
   }, [category]);
 
 
@@ -46,8 +46,8 @@ function ProductStoreComponent() {
   }
 
   const handleFilterOPTIONSClick = (e) => {
-    console.log(e.currentTarget.textContent.split(" ")[0])
-    setCurrentCategoryProduct(AllProduct.filter((products) => (products.category === category) && (products.brand === e.currentTarget.textContent.split(" ")[0] || products.rating >= e.currentTarget.textContent.split(" ")[0] || products.discountPercentage <= Number(e.currentTarget.textContent.split(" ")[0]))));
+    e.preventDefault();
+    setCurrentCategoryProduct(AllProduct.filter((products) => (products.category === category) && (products.brand === e.currentTarget.textContent.split(" ")[0] || products.rating >= e.currentTarget.textContent.split(" ")[0] ||Number(products.discountPercentage) <= Number(e.currentTarget.textContent.split(" ")[0]))));
     scrollToTOP();
 
   }

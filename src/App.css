@@ -1434,13 +1434,10 @@ input::-webkit-inner-spin-button {
 .singleProducView_Container {
   padding: 2em 0em;
   width: 100%;
-  height: 100vh;
   position: relative;
   display: grid;
-  grid-template-columns: 400px calc(100% - 450px);
-  grid-template-rows: 600px 300px;
-  overflow: hidden;
-  overflow-y: auto;
+  grid-template-columns: 400px calc(100% - 425px);
+  grid-template-rows: 600px auto;
   gap: 10px;
   justify-content: center;
 }
@@ -1449,8 +1446,54 @@ input::-webkit-inner-spin-button {
   border: 2px solid blue;
   grid-column: 1/2;
   grid-row: 1/2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-
+.currentImageContainer{
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.362);
+}
+.currentProductImage{
+  max-width: 300px;
+  max-height: 320px;
+}
+.otherImageContainer{
+  border: 2px solid red;
+  width: 100%;
+  height: calc(100% - 425px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 100px));
+  align-items: center;
+  justify-content: center;
+  padding: 0.5em;
+  gap: 10px;
+}
+.otherImageBox{
+  border: 1px solid rgba(0, 0, 0, 0.245);
+  width: 100%;
+  height: 70px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.otherProductImges{
+  object-fit: contain;
+  width: 60px;
+  height: 50px;
+  transition: all 0.2s ease-in;
+}
+.otherProductImges:hover{
+  cursor: pointer;
+  transform: scale(1.2);
+}
 .singleProductView_detailsContainer {
   border: 2px solid red;
   width: 100%;
@@ -1459,7 +1502,6 @@ input::-webkit-inner-spin-button {
 }
 
 .singleProductView_moreProductContainer {
-  border: 2px solid black;
   width: 100%;
   grid-column: 1/3;
   grid-row: 2/3;

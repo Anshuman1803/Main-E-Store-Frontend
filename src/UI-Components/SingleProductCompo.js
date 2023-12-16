@@ -2,6 +2,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Loader from './Loader';
+import HeaderComponents from './HeaderComponents'
+import HomeProductSlider from './HomeProductSlider';
+
 function SingleProductCompo() {
     const CurrentID = useParams().title.split("-")[1];
     const [currentProduct, setCurrentProduct] = useState([]);
@@ -15,27 +18,59 @@ function SingleProductCompo() {
             setCurrentImage(response.data[0].images.LinkOne)
             setIsLoading(false)
         })
-    }, [CurrentID])
+    }, [CurrentID]);
 
+    const handleImageChangeClick = (e) => {
+        e.preventDefault();
+        setCurrentImage(e.target.src)
+    }
     return (
-        <section className='singleProducView_Container'>
-            {
-                isLoading ? <Loader/> : <>
-                <div className="singleProductView_imageContainer">
+        <>
+            <HeaderComponents />
+            <section className='singleProducView_Container'>
+                {
+                    isLoading ? <Loader /> : <>
+                        <div className="singleProductView_imageContainer">
 
-                </div>
-                
-                <div className="singleProductView_detailsContainer">
+                            <div className="currentImageContainer">
+                                <img src={currentImage} alt="productImage" className='currentProductImage' />
+                            </div>
+                            <div className="otherImageContainer">
+                                <div className="otherImageBox">
+                                    <img src={currentProduct?.images?.LinkOne} alt="ProductImages" className='otherProductImges' onClick={handleImageChangeClick} />
+                                </div>
+                                <div className="otherImageBox">
+                                    <img src={currentProduct?.images?.LinkTwo} alt="ProductImages" className='otherProductImges' onClick={handleImageChangeClick} />
+                                </div>
+                                <div className="otherImageBox">
+                                    <img src={currentProduct?.images?.LinkThree} alt="ProductImages" className='otherProductImges' onClick={handleImageChangeClick} />
+                                </div>
+                                <div className="otherImageBox">
+                                    <img src={currentProduct?.images?.LinkFour} alt="ProductImages" className='otherProductImges' onClick={handleImageChangeClick} />
+                                </div>
+                                {
+                                    currentProduct?.images?.LinkFive && <div className="otherImageBox">
+                                        <img src={currentProduct?.images?.LinkFive} alt="ProductImages" className='otherProductImges' onClick={handleImageChangeClick} />
+                                    </div>
+                                }
 
-                </div>
+                            </div>
+                        </div>
 
-                <div className="singleProductView_moreProductContainer">
-                    
-                </div>
-                </>
-            }
+                        <div className="singleProductView_detailsContainer">
 
-        </section>
+                        </div>
+
+                        <div className="singleProductView_moreProductContainer">
+
+                            <HomeProductSlider category={currentProduct.category} />
+
+                        </div>
+                    </>
+                }
+
+            </section>
+        </>
     )
 }
 
