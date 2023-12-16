@@ -16,7 +16,7 @@ function ProductStoreComponent() {
 
   useEffect(() => {
     setIsloading(true)
-    axios.get(`http://localhost:5000/api/product/${category}`).then((response) => {
+    axios.get(`https://mainstoreapi.onrender.com/api/product/${category}`).then((response) => {
       setCurrentCategoryProduct(response.data);
       setIsloading(false)
     });
@@ -24,7 +24,7 @@ function ProductStoreComponent() {
 
   useEffect(() => {
     setIsloading(true)
-    axios.get("http://localhost:5000/api/product").then((response) => {
+    axios.get("https://mainstoreapi.onrender.com/api/product").then((response) => {
       setAllProduct(response.data.filter((product) => product.category === category))
       setIsloading(false);
     });

@@ -10,7 +10,7 @@ function HomeProductSlider({ category }) {
 
     useEffect(() => {
         setIsloading(true)
-        axios.get(`http://localhost:5000/api/product/${category}`).then((response) => {
+        axios.get(`https://mainstoreapi.onrender.com/api/product/${category}`).then((response) => {
             setproductData(response.data);
             setIsloading(false)
         });

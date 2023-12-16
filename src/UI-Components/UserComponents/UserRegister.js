@@ -42,7 +42,7 @@ function UserRegister() {
 
     } else {
       setIsUserLoading(true);
-      axios.post("http://localhost:5000/api/user/register", userDetails).then((response) => {
+      axios.post("https://mainstoreapi.onrender.com/api/user/register", userDetails).then((response) => {
 
         if (response.data.resMsg === "User Already Exists") {
           toast.warn('User Already Exists', {

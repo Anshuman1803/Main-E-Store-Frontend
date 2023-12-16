@@ -13,7 +13,7 @@ function SingleProductCompo() {
 
     useEffect(() => {
         setIsLoading(true)
-        axios.get(`http://localhost:5000/api/products/${CurrentID}`).then((response) => {
+        axios.get(`https://mainstoreapi.onrender.com/api/products/${CurrentID}`).then((response) => {
             setCurrentProduct(response.data[0])
             setCurrentImage(response.data[0].images.LinkOne)
             setIsLoading(false)

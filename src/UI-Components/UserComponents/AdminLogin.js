@@ -43,7 +43,7 @@ function AdminLogin() {
         } else {
 
             setIsUserLoading(true);
-            axios.post("http://localhost:5000/api/admin/login", adminDetails).then((response) => {
+            axios.post("https://mainstoreapi.onrender.com/api/admin/login", adminDetails).then((response) => {
                 console.log(response.data)
 
                 if (response.data.resMsg === "Admin Logged In Successfully") {
