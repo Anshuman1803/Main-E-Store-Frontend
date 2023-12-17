@@ -1473,7 +1473,6 @@ input::-webkit-inner-spin-button {
 }
 
 .otherImageContainer {
-  border: 2px solid red;
   width: 100%;
   height: calc(100% - 425px);
   display: grid;
