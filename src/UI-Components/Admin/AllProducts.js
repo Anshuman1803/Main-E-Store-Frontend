@@ -10,7 +10,7 @@ function AllProducts() {
 
     const loadProductFun = () => {
         setIsloading(true)
-        axios.get("http://localhost:5000/api/product").then((response) => {
+        axios.get("https://mainstoreapi.onrender.com/api/product").then((response) => {
             setAllProduct(response.data)
             setIsloading(false);
         });
@@ -30,7 +30,7 @@ function AllProducts() {
 
     const handleDeleteProduct = (e) => {
         setIsloading(true)
-        axios.post(`http://localhost:5000/api/admin/deleteproduct/${deleteProductID}`).then((response) => {
+        axios.post(`https://mainstoreapi.onrender.com/api/admin/deleteproduct/${deleteProductID}`).then((response) => {
 
             toast.success('Product Deleted Successfully', {
                 position: "top-center",

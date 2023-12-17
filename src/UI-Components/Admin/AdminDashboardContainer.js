@@ -18,11 +18,11 @@ function AdminDashboardContainer() {
 
   useEffect(() => {
     setIsloading(true)
-    axios.get("http://localhost:5000/api/product").then((response) => {
+    axios.get("https://mainstoreapi.onrender.com/api/product").then((response) => {
       settotalProduct(response.data.length)
     });
 
-    axios.get("http://localhost:5000/api/admin/allUsers").then((response) => {
+    axios.get("https://mainstoreapi.onrender.com/api/admin/allUsers").then((response) => {
       settotalUsers(response.data.length)
       setIsloading(false);
     });

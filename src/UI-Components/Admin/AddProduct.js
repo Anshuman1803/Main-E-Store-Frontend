@@ -150,7 +150,7 @@ function AddProduct() {
   const handlegenerateNExtID = (e) => {
     e.preventDefault();
     setIsloading(true)
-    axios.get("http://localhost:5000/api/product").then((response) => {
+    axios.get("https://mainstoreapi.onrender.com/api/product").then((response) => {
       let generatedID = response.data.length + 1;
       setNewProduct({ ...newProduct, id: generatedID })
       setIsloading(false);
@@ -309,7 +309,7 @@ function AddProduct() {
     }
     else {
       setIsloading(true)
-      axios.post("http://localhost:5000/api/admin/add-product", newProduct).then((response) => {
+      axios.post("https://mainstoreapi.onrender.com/api/admin/add-product", newProduct).then((response) => {
         toast.success('New Product Added Successfully', {
           position: "top-center",
           autoClose: 3000,

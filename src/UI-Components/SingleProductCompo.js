@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Loader from './Loader';
 import HeaderComponents from './HeaderComponents'
-import HomeProductSlider from './HomeProductSlider';
 
 function SingleProductCompo() {
     const CurrentID = useParams().title.split("-")[1];
@@ -53,18 +52,26 @@ function SingleProductCompo() {
                                         <img src={currentProduct?.images?.LinkFive} alt="ProductImages" className='otherProductImges' onClick={handleImageChangeClick} />
                                     </div>
                                 }
-
                             </div>
                         </div>
 
                         <div className="singleProductView_detailsContainer">
+                            <h1 className="singleProduct___title">{currentProduct?.title}</h1>
 
-                        </div>
+                            <p className="singleProduct__rating ">{currentProduct?.rating}<i className="fa-solid fa-star sinlgeProduct__ratingICON"></i></p>
+                            <div className="singleProduct__priceInfoBox">
+                                <p className="singleProduct__Dprice">₹{currentProduct?.Dprice}</p>
+                                <p className="singleProduct__Aprice">₹{currentProduct?.Aprice}</p>
+                                <p className="singleProduct__DiscountPercentage"> {currentProduct?.discountPercentage}% Off</p>
+                            </div>
 
-                        <div className="singleProductView_moreProductContainer">
+                            <button className="singleProduct__addToCartButton"><i className="fa-solid fa-cart-arrow-down singleProduct__addTocartButtonICon"></i>Add To Cart</button>
 
-                            <HomeProductSlider category={currentProduct.category} />
+                            <p className="singleProduct__description">
+                                <span className='singleProduct_descriptionLabel'>Product Description</span>
+                                {currentProduct?.description}
 
+                            </p>
                         </div>
                     </>
                 }
