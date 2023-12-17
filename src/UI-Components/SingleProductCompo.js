@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom'
 import Loader from './Loader';
 import HeaderComponents from './HeaderComponents'
 import HomeProductSlider from "./HomeProductSlider"
-import { addToCart } from '../ReduxSlice/CartSlice';
 import { ToastContainer, toast } from 'react-toastify';
 function SingleProductCompo() {
     const dispatch = useDispatch();
@@ -32,49 +31,7 @@ function SingleProductCompo() {
         setCurrentImage(e.target.src)
     }
 
-    const handleAddTocart = (e, product) => {
-        e.preventDefault();
-        if (!isLoggedIN) {
-            toast.error('Access Denind! You Are Not Logged In ', {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-            return
-        }
-        product.userEmail = userDetails[0].userEmail;
-        dispatch(addToCart(product));
-        toast.success('Added Successfully', {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
-        // axios.post("http://localhost:5000/api/addtocart", product).then((response)=>{
-        //    if(response.data){
-        //     toast.success('Added Successfully', {
-        //         position: "top-center",
-        //         autoClose: 3000,
-        //         hideProgressBar: false,
-        //         closeOnClick: true,
-        //         pauseOnHover: true,
-        //         draggable: true,
-        //         progress: undefined,
-        //         theme: "light",
-        //       });
-        //        dispatch(addToCart(product))
-        //    }
-        // })
-    }
+
     // ERR_NETWORK
     return (
         <>
@@ -130,7 +87,7 @@ function SingleProductCompo() {
                                 <p className="singleProduct__DiscountPercentage"> {currentProduct?.discountPercentage}% Off</p>
                             </div>
 
-                            <button className="singleProduct__addToCartButton" onClick={(e) => handleAddTocart(e, currentProduct)}><i className="fa-solid fa-cart-arrow-down singleProduct__addTocartButtonICon"></i>Add To Cart</button>
+                            <button className="singleProduct__addToCartButton"><i className="fa-solid fa-cart-arrow-down singleProduct__addTocartButtonICon"></i>Add To Cart</button>
 
                             <p className="singleProduct__description">
                                 <span className='singleProduct_descriptionLabel'>Product Description</span>
