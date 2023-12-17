@@ -1,30 +1,95 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import Loader from './Loader';
 import HeaderComponents from './HeaderComponents'
-
+import HomeProductSlider from "./HomeProductSlider"
+import { addToCart } from '../ReduxSlice/CartSlice';
+import { ToastContainer, toast } from 'react-toastify';
 function SingleProductCompo() {
+    const dispatch = useDispatch();
     const CurrentID = useParams().title.split("-")[1];
     const [currentProduct, setCurrentProduct] = useState([]);
     const [currentImage, setCurrentImage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-
+    const { isLoggedIN, userDetails } = useSelector((state) => state.MsCart.UserCart);
     useEffect(() => {
         setIsLoading(true)
         axios.get(`https://mainstoreapi.onrender.com/api/products/${CurrentID}`).then((response) => {
             setCurrentProduct(response.data[0])
             setCurrentImage(response.data[0].images.LinkOne)
             setIsLoading(false)
-        })
+        });
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
     }, [CurrentID]);
 
     const handleImageChangeClick = (e) => {
         e.preventDefault();
         setCurrentImage(e.target.src)
     }
+
+    const handleAddTocart = (e, product) => {
+        e.preventDefault();
+        if (!isLoggedIN) {
+            toast.error('Access Denind! You Are Not Logged In ', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            return
+        }
+        product.userEmail = userDetails[0].userEmail;
+        dispatch(addToCart(product));
+        toast.success('Added Successfully', {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+        // axios.post("http://localhost:5000/api/addtocart", product).then((response)=>{
+        //    if(response.data){
+        //     toast.success('Added Successfully', {
+        //         position: "top-center",
+        //         autoClose: 3000,
+        //         hideProgressBar: false,
+        //         closeOnClick: true,
+        //         pauseOnHover: true,
+        //         draggable: true,
+        //         progress: undefined,
+        //         theme: "light",
+        //       });
+        //        dispatch(addToCart(product))
+        //    }
+        // })
+    }
+    // ERR_NETWORK
     return (
         <>
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <HeaderComponents />
             <section className='singleProducView_Container'>
                 {
@@ -65,7 +130,7 @@ function SingleProductCompo() {
                                 <p className="singleProduct__DiscountPercentage"> {currentProduct?.discountPercentage}% Off</p>
                             </div>
 
-                            <button className="singleProduct__addToCartButton"><i className="fa-solid fa-cart-arrow-down singleProduct__addTocartButtonICon"></i>Add To Cart</button>
+                            <button className="singleProduct__addToCartButton" onClick={(e) => handleAddTocart(e, currentProduct)}><i className="fa-solid fa-cart-arrow-down singleProduct__addTocartButtonICon"></i>Add To Cart</button>
 
                             <p className="singleProduct__description">
                                 <span className='singleProduct_descriptionLabel'>Product Description</span>
@@ -76,7 +141,9 @@ function SingleProductCompo() {
                     </>
                 }
 
+
             </section>
+            <HomeProductSlider category={currentProduct?.category} title={"You May Like "} />
         </>
     )
 }

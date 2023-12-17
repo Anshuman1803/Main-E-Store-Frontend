@@ -86,6 +86,8 @@ svg {
   flex-direction: column;
   text-decoration: none;
   color: #156ab4;
+  outline: none;
+  border: none;
 }
 
 .appHeader__Logo {
@@ -689,10 +691,14 @@ input[type="password"] {
 }
 
 .homeProduct__SliderContainers {
+  margin: 10px 0px;
   width: 100%;
   height: 495px;
   position: relative;
   overflow: hidden;
+}
+.homeProduct__SliderContainers .loaderContainer{
+  backdrop-filter: none;
 }
 
 .homeProduct__ContainersHeader {
@@ -702,8 +708,8 @@ input[type="password"] {
   align-items: center;
   justify-content: center;
   padding: 0.5em;
-  font-size: 35px;
-  text-transform: capitalize;
+  font-size: 30px;
+  text-transform: uppercase;
   border-bottom: 2px solid rgba(0, 0, 0, 0.281);
 
 }

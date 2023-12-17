@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Loader from './Loader';
 
-function HomeProductSlider({ category }) {
+function HomeProductSlider({ category, title }) {
     const [isLoading, setIsloading] = useState(false);
     const [productData, setproductData] = useState([]);
 
@@ -35,13 +35,11 @@ function HomeProductSlider({ category }) {
 
 
     return (
-
-        <>
-            {isLoading ? <Loader /> : <section className='homeProduct__SliderContainers'>
-                <h1 className='homeProduct__ContainersHeader'>best of {category}</h1>
-                <i className="fa-solid fa-caret-left leftArrow sliderArrow" onClick={handlePrevBtnClick} ></i>
-                <div className='homeProduct__SliderBox'>
-
+        <section className='homeProduct__SliderContainers'>
+            <h1 className='homeProduct__ContainersHeader'>{title}</h1>
+            <i className="fa-solid fa-caret-left leftArrow sliderArrow" onClick={handlePrevBtnClick} ></i>
+            {
+                isLoading ? <Loader /> : <div className='homeProduct__SliderBox'>
                     {
                         productData?.map((product) => {
                             return <div className="homeProduct" key={product._id}>
@@ -61,11 +59,10 @@ function HomeProductSlider({ category }) {
 
 
                 </div>
-                <i className="fa-solid fa-caret-right rightArrow sliderArrow" onClick={handleNextBtnClick}></i>
+            }
+            <i className="fa-solid fa-caret-right rightArrow sliderArrow" onClick={handleNextBtnClick}></i>
 
-            </section>}
-        </>
-
+        </section>
     )
 }
 
