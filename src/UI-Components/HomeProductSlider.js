@@ -1,5 +1,4 @@
 import { memo, useEffect, useState } from 'react';
-import RatingComponent from './MUI-Components/RatingComponent';
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Loader from './Loader';
@@ -49,7 +48,6 @@ function HomeProductSlider({ category, title }) {
                                     <img src={product?.images.LinkOne} alt="ProductPoster" className="ProductPoster" />
                                 </div>
                                 <div className="homeProduct__InformationContainer">
-                                    <RatingComponent rating={product?.rating} />
                                     <span className='homeProduct__discountPercentageText'>{product?.discountPercentage} % Off</span>
                                     <button className='addToCartButton'>Add To Cart</button>
                                 </div>

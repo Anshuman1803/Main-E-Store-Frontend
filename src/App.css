@@ -789,7 +789,7 @@ input[type="password"] {
 
 .homeProduct__discountPercentageText {
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
   color: #1d93fa;
 }
 
@@ -1581,6 +1581,11 @@ input::-webkit-inner-spin-button {
   transition: all 2s ease-in;
   transform: scale(1);
 }
+.homeProduct__discountPercentageText{
+  animation: HeartBeatAnimation 2s ease-out infinite;
+  transition: all 2s ease-in;
+  transform: scale(1);
+}
 
 @keyframes HeartBeatAnimation {
 
@@ -1618,6 +1623,9 @@ input::-webkit-inner-spin-button {
   border-radius: 50px;
   color: white;
 }
+.singleProduct__removeFromCartButton{
+  background-color: #dc3545;
+}
 
 .singleProduct__addTocartButtonICon {
   margin-right: 15px;
@@ -1627,7 +1635,9 @@ input::-webkit-inner-spin-button {
   cursor: pointer;
   background-color: #388e3c;
 }
-
+.singleProduct__removeFromCartButton:hover{
+  background-color: #b32836;
+}
 .singleProduct__description {
   margin: 5px 0px 10px 0x;
   font-weight: 300;

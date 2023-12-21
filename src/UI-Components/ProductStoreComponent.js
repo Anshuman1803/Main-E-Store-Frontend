@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import WebNavBarComponent from './WebNavBarComponent'
 import HeaderComponents from './HeaderComponents'
-import RatingComponent from "./MUI-Components/RatingComponent"
 import Loader from './Loader'
 import axios from 'axios'
 function ProductStoreComponent() {
@@ -131,7 +130,6 @@ function ProductStoreComponent() {
                           <img src={productData?.images.LinkOne} alt="ProductPoster" className="ProductPoster" />
                         </div>
                         <div className="homeProduct__InformationContainer">
-                          <RatingComponent rating={productData?.rating} />
                           <span className='homeProduct__discountPercentageText'>{productData?.discountPercentage} % Off</span>
                           <button className='addToCartButton'>Add To Cart</button>
                         </div>
