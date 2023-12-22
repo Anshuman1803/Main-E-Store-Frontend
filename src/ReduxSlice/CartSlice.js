@@ -31,14 +31,22 @@ const ReduxCartSlice = createSlice({
         },
 
         addToCart(state, action) {
-           delete (action.payload["_id"]);
-           let tempProduct = action.payload
-            tempProduct = {...tempProduct, "userEmail" : state.UserCart.userDetails[0].userEmail}
-            state.UserCart.cartItems.push(tempProduct);
+            delete (action.payload["_id"]);
 
-           axios.post("https://mainstoreapi.onrender.com/api/addtocart", tempProduct);
+            const itemIndex = state.UserCart.cartItems.findIndex((item) => item.id === action.payload.id);
+
+            if (itemIndex >= 0) {
+                state.tempLoading = true
+                state.UserCart.cartItems[itemIndex].ItemQuantity += 1;
+                const tempProduct = { ...action.payload, ItemQuantity: state.UserCart.cartItems[itemIndex].ItemQuantity, "userEmail": state.UserCart.userDetails[0].userEmail };
+                axios.post("https://mainstoreapi.onrender.com/api/updateCartProduct", tempProduct)
+
+            } else {
+                const tempProduct = { ...action.payload, ItemQuantity: 1, "userEmail": state.UserCart.userDetails[0].userEmail };
+                state.UserCart.cartItems.push(tempProduct);
+                axios.post("https://mainstoreapi.onrender.com/api/addtocart", tempProduct);
+            }
             localStorage.setItem("cartItems", JSON.stringify(state.UserCart.cartItems));
-            tempProduct = [];
         },
 
         removeFromCart(state, action) {

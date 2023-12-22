@@ -6,14 +6,15 @@ import Loader from './Loader';
 import HeaderComponents from './HeaderComponents'
 import HomeProductSlider from "./HomeProductSlider"
 import { ToastContainer, toast } from 'react-toastify';
-import { addToCart, removeFromCart } from '../ReduxSlice/CartSlice';
+import { addToCart } from '../ReduxSlice/CartSlice';
 function SingleProductCompo() {
     const dispatch = useDispatch();
     const CurrentID = useParams().title.split("-")[1];
     const [currentProduct, setCurrentProduct] = useState([]);
     const [currentImage, setCurrentImage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const { isLoggedIN, cartItems } = useSelector((state) => state.MsCart.UserCart);
+    const [buttonLoading, setButtonLoading] = useState(false)
+    const { isLoggedIN } = useSelector((state) => state.MsCart.UserCart);
     useEffect(() => {
         setIsLoading(true)
         axios.get(`https://mainstoreapi.onrender.com/api/products/${CurrentID}`).then((response) => {
@@ -35,7 +36,8 @@ function SingleProductCompo() {
     const handleAddToCartClick = (e, product) => {
         e.preventDefault();
         if (isLoggedIN) {
-            dispatch(addToCart(product))
+            setButtonLoading(true)
+            dispatch(addToCart(product));
             toast.success('Product Added Successfully!', {
                 position: "top-center",
                 autoClose: 1500,
@@ -46,6 +48,9 @@ function SingleProductCompo() {
                 progress: undefined,
                 theme: "light",
             });
+            setTimeout(() => {
+                setButtonLoading(false);
+            }, 3000);
 
         } else {
             toast.error('You are not Logged In !', {
@@ -60,22 +65,6 @@ function SingleProductCompo() {
             });
         }
     }
-
-    const handleRemoveFromCart = (e, product) => {
-        e.preventDefault();
-        dispatch(removeFromCart(product));
-        toast.success ('Product Removed Successfully!', {
-            position: "top-center",
-            autoClose: 1500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
-    }
-
     return (
         <>
             <ToastContainer
@@ -129,17 +118,15 @@ function SingleProductCompo() {
                                 <p className="singleProduct__Aprice">₹{currentProduct?.Aprice}</p>
                                 <p className="singleProduct__DiscountPercentage"> {currentProduct?.discountPercentage}% Off</p>
                             </div>
-                            {
-                                (cartItems.filter((item) => item.id === Number(CurrentID))).length > 0 ? <button className="singleProduct__addToCartButton singleProduct__removeFromCartButton" onClick={(e) => handleRemoveFromCart(e, currentProduct)}>Remove From Cart</button>
-                                    :
-                                    <button className="singleProduct__addToCartButton" onClick={(e) => handleAddToCartClick(e, currentProduct)}><i className="fa-solid fa-cart-arrow-down singleProduct__addTocartButtonICon"></i>Add To Cart</button>
-                            }
+
+                            <button className={`singleProduct__addToCartButton ${buttonLoading && "disabledAddTocartButton"}`} onClick={(e) => handleAddToCartClick(e, currentProduct)}>
+                                {buttonLoading ? <>Saving<i className="fa-solid fa-spinner fa-spin"></i> </> : <>  <i className="fa-solid fa-cart-arrow-down singleProduct__addTocartButtonICon"></i>Add To Cart</>}
+                            </button >
 
 
                             <p className="singleProduct__description">
                                 <span className='singleProduct_descriptionLabel'>Product Description</span>
                                 {currentProduct?.description}
-
                             </p>
                         </div>
                     </>

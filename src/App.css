@@ -697,7 +697,8 @@ input[type="password"] {
   position: relative;
   overflow: hidden;
 }
-.homeProduct__SliderContainers .loaderContainer{
+
+.homeProduct__SliderContainers .loaderContainer {
   backdrop-filter: none;
 }
 
@@ -826,7 +827,7 @@ input[type="password"] {
   padding: 0.3em;
   background-color: transparent;
   outline: none;
-  width: 60%;
+  width: 70%;
   font-size: 16px;
   font-weight: 700;
   border-radius: 20px;
@@ -1581,7 +1582,8 @@ input::-webkit-inner-spin-button {
   transition: all 2s ease-in;
   transform: scale(1);
 }
-.homeProduct__discountPercentageText{
+
+.homeProduct__discountPercentageText {
   animation: HeartBeatAnimation 2s ease-out infinite;
   transition: all 2s ease-in;
   transform: scale(1);
@@ -1623,9 +1625,21 @@ input::-webkit-inner-spin-button {
   border-radius: 50px;
   color: white;
 }
-.singleProduct__removeFromCartButton{
-  background-color: #dc3545;
+
+.disabledAddTocartButton {
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
 }
+
+
+
 
 .singleProduct__addTocartButtonICon {
   margin-right: 15px;
@@ -1635,9 +1649,13 @@ input::-webkit-inner-spin-button {
   cursor: pointer;
   background-color: #388e3c;
 }
-.singleProduct__removeFromCartButton:hover{
-  background-color: #b32836;
+
+.disabledAddTocartButton:hover {
+  cursor: not-allowed;
+  background-color: #dc3545;
+  color: white;
 }
+
 .singleProduct__description {
   margin: 5px 0px 10px 0x;
   font-weight: 300;
@@ -1745,6 +1763,7 @@ input::-webkit-inner-spin-button {
     grid-column: 1/2;
     grid-row: 2/3;
   }
+
   .singleProduct___title {
     font-size: 3.4vw;
   }
@@ -1768,6 +1787,7 @@ input::-webkit-inner-spin-button {
   .sliderContainer {
     height: 250px;
   }
+
   .singleProduct___title {
     font-size: 4vw;
   }
@@ -1851,6 +1871,7 @@ input::-webkit-inner-spin-button {
   .homeProduct__ContainersHeader {
     font-size: 18px;
   }
+
   .singleProduct___title {
     font-size: 4.5vw;
   }

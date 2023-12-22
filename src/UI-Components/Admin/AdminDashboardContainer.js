@@ -9,9 +9,9 @@ function AdminDashboardContainer() {
   const dispatch = useDispatch();
   const [isLoading, setIsloading] = useState(false);
   const [totalProduct, settotalProduct] = useState(0);
-  const [totalOders] = useState(0)
-  const [totalUsers, settotalUsers] = useState(0)
-  const [totalIncom] = useState(0)
+  const [totalOders, setTotalOrder] = useState(0)
+  const [totalUsers, setTotalUsers] = useState(0)
+  const [totalIncom, setTotalIncom] = useState(0)
   const currentPath = useLocation().pathname;
 
   const { isLoggedIN, Admin } = useSelector((state) => state.AppAdmin.AdminDetails);
@@ -23,9 +23,20 @@ function AdminDashboardContainer() {
     });
 
     axios.get("https://mainstoreapi.onrender.com/api/admin/allUsers").then((response) => {
-      settotalUsers(response.data.length)
+      setTotalUsers(response.data.length)
       setIsloading(false);
     });
+
+    axios.get("https://mainstoreapi.onrender.com/api/admin/cartItems").then((response) => {
+      let tempTotalOrder = 0;
+      let tempTotalSales = 0;
+      response.data.forEach((item) => {
+        tempTotalOrder += item.ItemQuantity        ;
+        tempTotalSales += item.Dprice * item.ItemQuantity
+      })
+      setTotalOrder(tempTotalOrder);
+      setTotalIncom(tempTotalSales);
+    })
   }, [currentPath]);
 
   const handleShowHideSidebar = (e) => {

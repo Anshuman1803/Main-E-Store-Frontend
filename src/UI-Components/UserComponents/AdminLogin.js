@@ -44,8 +44,6 @@ function AdminLogin() {
 
             setIsUserLoading(true);
             axios.post("https://mainstoreapi.onrender.com/api/admin/login", adminDetails).then((response) => {
-                console.log(response.data)
-
                 if (response.data.resMsg === "Admin Logged In Successfully") {
                     toast.success('Admin Logged In Successfully', {
                         position: "top-center",
