@@ -8,7 +8,6 @@ function UserInfo() {
   const navigateTO = useNavigate();
 
   const { userDetails, cartItems, Total__Quantity, isLoggedIN, totalAmmount } = useSelector((state) => state.MsCart.UserCart);
-  console.log(userDetails)
   return (
     <section className='dashboard__Section'>
       <h3 className='dashboard__Section_Headers'>Welcome {userDetails[0]?.userName}</h3>

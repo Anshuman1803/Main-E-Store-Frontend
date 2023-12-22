@@ -1672,6 +1672,47 @@ input::-webkit-inner-spin-button {
   color: darkgray;
 }
 
+/* Userdashbaord-- cart Page */
+.cart__ItemContainer{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.cartEmptyContainer{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.cartEmptyContainer__Poster{
+  width: 320px;
+}
+
+.cartEmptyContainer__text{
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.cartEmptyContainer__shopNowButton{
+  border: none;
+  border-radius: 5px;
+  color: white;
+  width: 175px;
+  padding: 0.6em;
+  font-size: 18px;
+  background-color: #156ab4;
+  cursor: pointer;
+}
+
+.cartEmptyContainer__shopNowButton:hover{
+  cursor: pointer;
+  background-color: #0d5ca1;
+}
+
 @media screen and (max-width : 1024px) {
   .adminProfileContainer__heading {
     font-size: 3vw;
