@@ -53,9 +53,26 @@ const ReduxCartSlice = createSlice({
             state.UserCart.cartItems = state.UserCart.cartItems.filter((product) => product.id !== action.payload.id);
             axios.post("https://mainstoreapi.onrender.com/api/removetocart", action.payload)
             localStorage.setItem("cartItems", JSON.stringify(state.UserCart.cartItems));
+        },
+        INCproductQuantity(state, action) {
+            const productIndex = state.UserCart.cartItems.findIndex((product) => product.id === action.payload);
+            state.UserCart.cartItems[productIndex].ItemQuantity += 1
+
+            axios.post("http://localhost:5000/api/updateCartProduct", state.UserCart.cartItems[productIndex]);
+            localStorage.setItem("cartItems", JSON.stringify(state.UserCart.cartItems));
+        },
+        DECRproductQuantity(state, action) {
+            const productIndex = state.UserCart.cartItems.findIndex((product) => product.id === action.payload);
+
+            if (state.UserCart.cartItems[productIndex].ItemQuantity > 1) {
+                state.UserCart.cartItems[productIndex].ItemQuantity -= 1;
+
+                axios.post("http://localhost:5000/api/updateCartProduct", state.UserCart.cartItems[productIndex]);
+                localStorage.setItem("cartItems", JSON.stringify(state.UserCart.cartItems));
+            }
         }
     }
 
 });
-export const { addLoginUser, userLogOut, addToCart, removeFromCart } = ReduxCartSlice.actions
+export const { addLoginUser, userLogOut, addToCart, removeFromCart, INCproductQuantity, DECRproductQuantity } = ReduxCartSlice.actions
 export default ReduxCartSlice.reducer

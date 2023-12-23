@@ -1673,12 +1673,13 @@ input::-webkit-inner-spin-button {
 }
 
 /* Userdashbaord-- cart Page */
-.cart__ItemContainer{
+.cart__ItemMainContainer {
   width: 100%;
   height: 100%;
   position: relative;
 }
-.cartEmptyContainer{
+
+.cartEmptyContainer {
   width: 100%;
   height: 100%;
   display: flex;
@@ -1688,16 +1689,16 @@ input::-webkit-inner-spin-button {
   gap: 40px;
 }
 
-.cartEmptyContainer__Poster{
+.cartEmptyContainer__Poster {
   width: 320px;
 }
 
-.cartEmptyContainer__text{
+.cartEmptyContainer__text {
   font-size: 22px;
   font-weight: 600;
 }
 
-.cartEmptyContainer__shopNowButton{
+.cartEmptyContainer__shopNowButton {
   border: none;
   border-radius: 5px;
   color: white;
@@ -1708,10 +1709,108 @@ input::-webkit-inner-spin-button {
   cursor: pointer;
 }
 
-.cartEmptyContainer__shopNowButton:hover{
+.cartEmptyContainer__shopNowButton:hover {
   cursor: pointer;
   background-color: #0d5ca1;
 }
+
+.userCart__Card_itemContainer {
+  padding: 1em;
+  border: 2px solid red;
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 275px));
+  justify-content: center;
+  align-items: start;
+  gap: 30px;
+
+}
+
+.userCart__itemCard {
+  border-radius: 5px;
+  width: 100%;
+  height: 350px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  position: relative;
+}
+.userCart_cardLoaderContainer{
+  position: absolute;
+  width: 100%;
+  top: 0;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  display: flex;
+}
+.userCart_cardLoader{
+margin: auto;
+font-size: 40px;
+}
+
+.userCart_itemCard_itemPosterBox {
+  border: 1px solid #0000002f;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7em;
+  background-color: white;
+}
+
+.userCart_itemCard_itemPosterBox_itemPoster {
+  max-width: 120px;
+  min-width: 120px;
+  max-height: 120px;
+  min-height: 120px;
+  object-fit: contain;
+}
+
+.userCart__itemCard__infoBox {
+  border: 2px solid blue;
+  width: 100%;
+  height: 100%;
+}
+
+.itemCard__infoBox__PriceBox {
+  margin: 10px 0px;
+  /* border: 2px solid red; */
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0em 1em;
+  gap: 30px;
+}
+
+.itemCard__infoBox__button {
+  width: 40px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #f9fcff;
+  color: #695cfe;
+  cursor: pointer;
+
+}
+
+.itemCard__inforBox_QuantityLable {
+  font-weight: 500;
+  font-size: 18px;
+  color: #dc3545;
+}
+
+
 
 @media screen and (max-width : 1024px) {
   .adminProfileContainer__heading {
