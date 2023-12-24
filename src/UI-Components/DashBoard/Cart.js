@@ -4,33 +4,76 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import Loader from '../Loader';
 import emptyCartPoster from '../../assests/emptyCartPoster.png'
-import { INCproductQuantity, DECRproductQuantity } from '../../ReduxSlice/CartSlice';
+import { INCproductQuantity, DECRproductQuantity, removeFromCart } from '../../ReduxSlice/CartSlice';
+import { ToastContainer, toast } from 'react-toastify';
 function Cart() {
   const navigateTO = useNavigate();
   const dispatch = useDispatch();
   const [isLoading, setIsloading] = useState(false);
   const [cartProducts, setCartProducts] = useState([])
-  const { isLoggedIN, userDetails } = useSelector((state) => state.MsCart.UserCart);
+  const { isLoggedIN, userDetails, cartItems } = useSelector((state) => state.MsCart.UserCart);
 
   useEffect(() => {
     if (isLoggedIN) {
       setIsloading(true)
       axios.get(`https://mainstoreapi.onrender.com/api/user/cartItems/${userDetails[0].userEmail}`).then((response) => {
-        setCartProducts(response.data)
-        setIsloading(false)
+        setCartProducts(response.data);
+        setIsloading(false);
       })
     }
-  }, [userDetails, isLoggedIN]);
+  }, [userDetails, isLoggedIN, cartItems]);
 
 
-  const handleIncrementQuantityClick = (e, currentID) => {
-    dispatch(INCproductQuantity(currentID))
+  const handleIncrementQuantityClick = (e, product) => {
+    e.preventDefault();
+    toast.success('Product Quantity Updated', {
+      position: "top-center",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+    dispatch(INCproductQuantity(product.id))
   }
-  const handleDecrementQuantityClick = (e, currentID) => {
-    dispatch(DECRproductQuantity(currentID))
+
+  const handleDecrementQuantityClick = (e, product) => {
+    e.preventDefault();
+    if (product.ItemQuantity > 1) {
+      toast.success('Product Quantity Updated', {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      dispatch(DECRproductQuantity(product.id))
+    }
+  }
+
+  const handleRemoveFromCart = (e, id, userEmail) => {
+    e.preventDefault();
+    dispatch(removeFromCart({id, userEmail}))
   }
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={1500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       {isLoading ? <Loader /> :
         <div className='cart__ItemContainer'>
 
@@ -53,13 +96,14 @@ function Cart() {
                       <div className="userCart__itemCard__infoBox">
 
                         <div className="itemCard__infoBox__PriceBox">
-                          <button className='itemCard__infoBox__button' onClick={(e) => handleDecrementQuantityClick(e, product.id)}
+                          <button className='itemCard__infoBox__button' onClick={(e) => handleDecrementQuantityClick(e, product)}
                           ><i className="fa-solid fa-minus"></i></button>
 
                           <span className='itemCard__inforBox_QuantityLable'>{product.ItemQuantity}</span>
 
-                          <button className='itemCard__infoBox__button' onClick={(e) => handleIncrementQuantityClick(e, product.id)}><i className="fa-solid fa-plus"></i></button>
+                          <button className='itemCard__infoBox__button' onClick={(e) => handleIncrementQuantityClick(e, product)}><i className="fa-solid fa-plus"></i></button>
                         </div>
+                        <button className='itemCard_removeFromCartButton' onClick={(e) => handleRemoveFromCart(e, product.id, product.userEmail)}>Remove</button>
 
                       </div>
 

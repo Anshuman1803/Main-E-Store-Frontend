@@ -1737,7 +1737,8 @@ input::-webkit-inner-spin-button {
   flex-direction: column;
   position: relative;
 }
-.userCart_cardLoaderContainer{
+
+.userCart_cardLoaderContainer {
   position: absolute;
   width: 100%;
   top: 0;
@@ -1746,9 +1747,10 @@ input::-webkit-inner-spin-button {
   border-radius: 10px;
   display: flex;
 }
-.userCart_cardLoader{
-margin: auto;
-font-size: 40px;
+
+.userCart_cardLoader {
+  margin: auto;
+  font-size: 40px;
 }
 
 .userCart_itemCard_itemPosterBox {
@@ -1776,11 +1778,15 @@ font-size: 40px;
   border: 2px solid blue;
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
 .itemCard__infoBox__PriceBox {
   margin: 10px 0px;
-  /* border: 2px solid red; */
   width: 100%;
   height: 30px;
   display: flex;
@@ -1808,6 +1814,18 @@ font-size: 40px;
   font-weight: 500;
   font-size: 18px;
   color: #dc3545;
+}
+
+.itemCard_removeFromCartButton {
+  width: 150px;
+  padding: 0.8em;
+  font-size: 14px;
+  border-radius: 50px;
+  border: none;
+  background-color: tomato;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 
