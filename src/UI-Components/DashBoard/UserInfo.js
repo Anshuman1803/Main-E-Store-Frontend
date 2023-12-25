@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 function UserInfo() {
   const navigateTO = useNavigate();
 
-  const { userDetails, cartItems, Total__Quantity, isLoggedIN, totalAmmount } = useSelector((state) => state.MsCart.UserCart);
+  const { userDetails} = useSelector((state) => state.MsCart.UserCart);
   return (
     <section className='dashboard__Section'>
       <h3 className='dashboard__Section_Headers'>Welcome {userDetails[0]?.userName}</h3>
