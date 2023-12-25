@@ -1,44 +1,112 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import HomeComponent from '../UI-Components/HomeComponent'
-import ProductStoreComponent from '../UI-Components/ProductStoreComponent'
-import FormContainer from '../UI-Components/UserComponents/FormContainer'
-import UserRegister from '../UI-Components/UserComponents/UserRegister'
-import UserLogIn from '../UI-Components/UserComponents/UserLogIn'
-import AdminLogin from '../UI-Components/UserComponents/AdminLogin'
-import DashboardContainer from '../UI-Components/DashBoard/DashboardContainer'
-import UserInfo from '../UI-Components/DashBoard/UserInfo'
-import Cart from '../UI-Components/DashBoard/Cart'
-import Wishlist from '../UI-Components/DashBoard/Wishlist'
-import OrderHistory from '../UI-Components/DashBoard/OrderHistory'
-import AdminDashboardContainer from '../UI-Components/Admin/AdminDashboardContainer'
-import AddProduct from '../UI-Components/Admin/AddProduct'
-import AllProducts from '../UI-Components/Admin/AllProducts'
-import SingleProductCompo from '../UI-Components/SingleProductCompo'
+import { Suspense, lazy } from 'react'
+const ProductStoreComponent = lazy(() => import('../UI-Components/ProductStoreComponent'));
+const FormContainer = lazy(() => import('../UI-Components/UserComponents/FormContainer'));
+const UserRegister = lazy(() => import('../UI-Components/UserComponents/UserRegister'));
+const UserLogIn = lazy(() => import('../UI-Components/UserComponents/UserLogIn'));
+const AdminLogin = lazy(() => import('../UI-Components/UserComponents/AdminLogin'));
+const DashboardContainer = lazy(() => import('../UI-Components/DashBoard/DashboardContainer'));
+const UserInfo = lazy(() => import('../UI-Components/DashBoard/UserInfo'));
+const Cart = lazy(() => import('../UI-Components/DashBoard/Cart'));
+const Wishlist = lazy(() => import('../UI-Components/DashBoard/Wishlist'));
+const OrderHistory = lazy(() => import('../UI-Components/DashBoard/OrderHistory'));
+const AdminDashboardContainer = lazy(() => import('../UI-Components/Admin/AdminDashboardContainer'));
+const AddProduct = lazy(() => import('../UI-Components/Admin/AddProduct'));
+const AllProducts = lazy(() => import('../UI-Components/Admin/AllProducts'));
+const SingleProductCompo = lazy(() => import('../UI-Components/SingleProductCompo'));
+const Loader = lazy(() => import('../UI-Components/Loader'));
+const HomeComponent = lazy(() => import('../UI-Components/HomeComponent'))
 
 function RouterComponent() {
   return (
     <Routes>
-      <Route path='/' element={<HomeComponent />} />
-      <Route path='/product/:category' element={<ProductStoreComponent />} />
-      <Route path='/products/:title' element={<SingleProductCompo />} />
+      <Route path='/' element={
+        <Suspense fallback={<Loader />}>
+          <HomeComponent />
+        </Suspense>
+      } />
 
-      <Route path='/user' element={<FormContainer />}>
-        <Route path="/user/register" element={<UserRegister />} />
-        <Route path="/user/login" element={<UserLogIn />} />
-        <Route path="/user/admin" element={<AdminLogin />} />
+      <Route path='/product/:category' element={
+        <Suspense fallback={<Loader />}>
+          <ProductStoreComponent />
+        </Suspense>
+      } />
+
+
+      <Route path='/products/:title' element={
+        <Suspense fallback={<Loader />}>
+          <SingleProductCompo />
+        </Suspense>
+      } />
+
+      <Route path='/user' element={
+        <Suspense fallback={<Loader />}>
+          <FormContainer />
+        </Suspense>
+      }>
+        <Route path="/user/register" element={
+          <Suspense fallback={<Loader />}>
+            <UserRegister />
+          </Suspense>
+        } />
+
+        <Route path="/user/login" element={
+          <Suspense fallback={<Loader />}>
+            <UserLogIn />
+          </Suspense>
+        } />
+
+        <Route path="/user/admin" element={
+          <Suspense fallback={<Loader />}>
+            <AdminLogin />
+          </Suspense>
+        } />
       </Route>
 
-      <Route path='/user/dashboard' element={<DashboardContainer />}>
-        <Route path='/user/dashboard/userprofile' element={<UserInfo />} />
-        <Route path='/user/dashboard/cart' element={<Cart />} />
-        <Route path='/user/dashboard/wishlist' element={<Wishlist />} />
-        <Route path='/user/dashboard/history' element={<OrderHistory />} />
+
+      <Route path='/user/dashboard' element={
+        <Suspense fallback={<Loader />}>
+          <DashboardContainer />
+        </Suspense>
+      }>
+        <Route path='/user/dashboard/userprofile' element={
+          <Suspense fallback={<Loader />}>
+            <UserInfo />
+          </Suspense>
+        } />
+        <Route path='/user/dashboard/cart' element={
+          <Suspense fallback={<Loader />}>
+            <Cart />
+          </Suspense>
+        } />
+        <Route path='/user/dashboard/wishlist' element={
+          <Suspense fallback={<Loader />}>
+            <Wishlist />
+          </Suspense>
+        } />
+        <Route path='/user/dashboard/history' element={
+          <Suspense fallback={<Loader />}>
+            <OrderHistory />
+          </Suspense>
+        } />
       </Route>
 
-      <Route path='/admin/dashboard' element={<AdminDashboardContainer />}>
-        <Route path='/admin/dashboard/All-products' element={<AllProducts />} />
-        <Route path='/admin/dashboard/add-product' element={<AddProduct />} />
+      <Route path='/admin/dashboard' element={
+        <Suspense fallback={<Loader />}>
+          <AdminDashboardContainer />
+        </Suspense>
+      }>
+        <Route path='/admin/dashboard/All-products' element={
+          <Suspense fallback={<Loader />}>
+            <AllProducts />
+          </Suspense>
+        } />
+        <Route path='/admin/dashboard/add-product' element={
+          <Suspense fallback={<Loader />}>
+            <AddProduct />
+          </Suspense>
+        } />
       </Route>
 
     </Routes>

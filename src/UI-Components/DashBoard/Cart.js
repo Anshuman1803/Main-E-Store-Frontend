@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import Loader from '../Loader';
 import emptyCartPoster from '../../assests/emptyCartPoster.png'
-import { INCproductQuantity, DECRproductQuantity, removeFromCart } from '../../ReduxSlice/CartSlice';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 function Cart() {
   const navigateTO = useNavigate();
-  const dispatch = useDispatch();
   const [isLoading, setIsloading] = useState(false);
   const [cartProducts, setCartProducts] = useState([])
   const { isLoggedIN, userDetails, cartItems } = useSelector((state) => state.MsCart.UserCart);
@@ -24,42 +22,10 @@ function Cart() {
   }, [userDetails, isLoggedIN, cartItems]);
 
 
-  const handleIncrementQuantityClick = (e, product) => {
-    e.preventDefault();
-    toast.success('Product Quantity Updated', {
-      position: "top-center",
-      autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-    dispatch(INCproductQuantity(product.id))
-  }
 
-  const handleDecrementQuantityClick = (e, product) => {
-    e.preventDefault();
-    if (product.ItemQuantity > 1) {
-      toast.success('Product Quantity Updated', {
-        position: "top-center",
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-      dispatch(DECRproductQuantity(product.id))
-    }
-  }
 
-  const handleRemoveFromCart = (e, id, userEmail) => {
-    e.preventDefault();
-    dispatch(removeFromCart({id, userEmail}))
-  }
+
+
   return (
     <>
       <ToastContainer
@@ -96,14 +62,14 @@ function Cart() {
                       <div className="userCart__itemCard__infoBox">
 
                         <div className="itemCard__infoBox__PriceBox">
-                          <button className='itemCard__infoBox__button' onClick={(e) => handleDecrementQuantityClick(e, product)}
+                          <button className='itemCard__infoBox__button' 
                           ><i className="fa-solid fa-minus"></i></button>
 
                           <span className='itemCard__inforBox_QuantityLable'>{product.ItemQuantity}</span>
 
-                          <button className='itemCard__infoBox__button' onClick={(e) => handleIncrementQuantityClick(e, product)}><i className="fa-solid fa-plus"></i></button>
+                          <button className='itemCard__infoBox__button'><i className="fa-solid fa-plus"></i></button>
                         </div>
-                        <button className='itemCard_removeFromCartButton' onClick={(e) => handleRemoveFromCart(e, product.id, product.userEmail)}>Remove</button>
+                        <button className='itemCard_removeFromCartButton'>Remove</button>
 
                       </div>
 

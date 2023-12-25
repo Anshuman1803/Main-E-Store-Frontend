@@ -1,15 +1,11 @@
 import { memo, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios'
 import Loader from './Loader';
-import { addToCart } from '../ReduxSlice/CartSlice';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 function HomeProductSlider({ category, title }) {
     const [isLoading, setIsloading] = useState(false);
     const [productData, setproductData] = useState([]);
-    const dispatch = useDispatch();
-    const { isLoggedIN } = useSelector((state) => state.MsCart.UserCart);
 
     useEffect(() => {
         setIsloading(true)
@@ -35,42 +31,6 @@ function HomeProductSlider({ category, title }) {
         e.preventDefault();
         navigateTO(`/products/${title.slice(0, 5)}${category}-${ID}`)
     }
-
-    const handleAddToCartClick = (e, product) => {
-        e.preventDefault();
-        if (isLoggedIN) {
-            e.target.classList.add("disabledAddTocartButton")
-            e.target.innerHTML = "Saving<i class='fa-solid fa-spinner fa-spin'></i>"
-            dispatch(addToCart(product));
-            toast.success('Product Added Successfully!', {
-                position: "top-center",
-                autoClose: 1500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-            setTimeout(() => {
-                e.target.innerHTML = "Add To Cart"
-                e.target.classList.remove("disabledAddTocartButton")
-            }, 3000);
-
-        } else {
-            toast.error('You are not Logged In !', {
-                position: "top-center",
-                autoClose: 1500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-        }
-    }
-
 
 
     return (
@@ -99,11 +59,11 @@ function HomeProductSlider({ category, title }) {
                                     <i className="fa-regular fa-heart homeProductCommpnIConButton wishListButton"></i>
                                     <i className="fa-regular fa-eye homeProductCommpnIConButton viewItemButton" onClick={(e) => handleShowProductClick(e, product.id, product.title, product.category)}></i>
                                     <div className="homeProductPosterContainer">
-                                        <img src={product?.images.LinkOne} alt="ProductPoster" className="ProductPoster" />
+                                        <img src={product?.images.LinkOne} loading="lazy" alt="ProductPoster" className="ProductPoster" />
                                     </div>
                                     <div className="homeProduct__InformationContainer">
                                         <span className='homeProduct__discountPercentageText'>{product?.discountPercentage} % Off</span>
-                                        <button className='addToCartButton' onClick={(e) => handleAddToCartClick(e, product)}>
+                                        <button className='addToCartButton'>
                                            Add To Cart                                            
                                             </button>
                                     </div>

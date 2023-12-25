@@ -31,7 +31,7 @@ function HomeSlider() {
 
     return (
         <div className='sliderContainer'>
-            <img src={posters[currentIndex].sliderIMG} alt="SliderPoster" className={`sliderPoster `} />
+            <img src={posters[currentIndex].sliderIMG} alt="SliderPoster" className={`sliderPoster `} loading="lazy"/>
         </div>
     )
 }

@@ -1,20 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import Loader from './Loader';
 import HeaderComponents from './HeaderComponents'
 import HomeProductSlider from "./HomeProductSlider"
-import { ToastContainer, toast } from 'react-toastify';
-import { addToCart } from '../ReduxSlice/CartSlice';
+import { ToastContainer } from 'react-toastify';
 function SingleProductCompo() {
-    const dispatch = useDispatch();
     const CurrentID = useParams().title.split("-")[1];
     const [currentProduct, setCurrentProduct] = useState([]);
     const [currentImage, setCurrentImage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [buttonLoading, setButtonLoading] = useState(false)
-    const { isLoggedIN } = useSelector((state) => state.MsCart.UserCart);
+    const [buttonLoading] = useState(false)
     useEffect(() => {
         setIsLoading(true)
         axios.get(`https://mainstoreapi.onrender.com/api/products/${CurrentID}`).then((response) => {
@@ -33,38 +29,6 @@ function SingleProductCompo() {
         setCurrentImage(e.target.src)
     }
 
-    const handleAddToCartClick = (e, product) => {
-        e.preventDefault();
-        if (isLoggedIN) {
-            setButtonLoading(true)
-            dispatch(addToCart(product));
-            toast.success('Product Added Successfully!', {
-                position: "top-center",
-                autoClose: 1500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-            setTimeout(() => {
-                setButtonLoading(false);
-            }, 3000);
-
-        } else {
-            toast.error('You are not Logged In !', {
-                position: "top-center",
-                autoClose: 1500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-        }
-    }
     return (
         <>
             <ToastContainer
@@ -86,24 +50,24 @@ function SingleProductCompo() {
                         <div className="singleProductView_imageContainer">
 
                             <div className="currentImageContainer">
-                                <img src={currentImage} alt="productImage" className='currentProductImage' />
+                                <img src={currentImage} loading="lazy" alt="productImage" className='currentProductImage' />
                             </div>
                             <div className="otherImageContainer">
                                 <div className="otherImageBox">
-                                    <img src={currentProduct?.images?.LinkOne} alt="ProductImages" className='otherProductImges' onClick={handleImageChangeClick} />
+                                    <img loading="lazy" src={currentProduct?.images?.LinkOne} alt="ProductImages" className='otherProductImges' onClick={handleImageChangeClick} />
                                 </div>
                                 <div className="otherImageBox">
-                                    <img src={currentProduct?.images?.LinkTwo} alt="ProductImages" className='otherProductImges' onClick={handleImageChangeClick} />
+                                    <img loading="lazy" src={currentProduct?.images?.LinkTwo} alt="ProductImages" className='otherProductImges' onClick={handleImageChangeClick} />
                                 </div>
                                 <div className="otherImageBox">
-                                    <img src={currentProduct?.images?.LinkThree} alt="ProductImages" className='otherProductImges' onClick={handleImageChangeClick} />
+                                    <img loading="lazy" src={currentProduct?.images?.LinkThree} alt="ProductImages" className='otherProductImges' onClick={handleImageChangeClick} />
                                 </div>
                                 <div className="otherImageBox">
-                                    <img src={currentProduct?.images?.LinkFour} alt="ProductImages" className='otherProductImges' onClick={handleImageChangeClick} />
+                                    <img  loading="lazy"src={currentProduct?.images?.LinkFour} alt="ProductImages" className='otherProductImges' onClick={handleImageChangeClick} />
                                 </div>
                                 {
                                     currentProduct?.images?.LinkFive && <div className="otherImageBox">
-                                        <img src={currentProduct?.images?.LinkFive} alt="ProductImages" className='otherProductImges' onClick={handleImageChangeClick} />
+                                        <img loading="lazy" src={currentProduct?.images?.LinkFive} alt="ProductImages" className='otherProductImges' onClick={handleImageChangeClick} />
                                     </div>
                                 }
                             </div>
@@ -119,7 +83,7 @@ function SingleProductCompo() {
                                 <p className="singleProduct__DiscountPercentage"> {currentProduct?.discountPercentage}% Off</p>
                             </div>
 
-                            <button className={`singleProduct__addToCartButton ${buttonLoading && "disabledAddTocartButton"}`} onClick={(e) => handleAddToCartClick(e, currentProduct)}>
+                            <button className={`singleProduct__addToCartButton ${buttonLoading && "disabledAddTocartButton"}`}>
                                 {buttonLoading ? <>Saving<i className="fa-solid fa-spinner fa-spin"></i> </> : <>  <i className="fa-solid fa-cart-arrow-down singleProduct__addTocartButtonICon"></i>Add To Cart</>}
                             </button >
 

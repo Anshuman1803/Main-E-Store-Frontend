@@ -123,11 +123,11 @@ function ProductStoreComponent() {
                 currentCategoryProduct.length > 0 ? <>
                   {
                     currentCategoryProduct?.map((productData, index) => {
-                      return <div className="homeProduct commonContainerProduct" key={productData.id + index}>
+                      return <div className="homeProduct commonContainerProduct" key={productData.id}>
                         <i className="fa-regular fa-heart homeProductCommpnIConButton wishListButton"></i>
                         <i className="fa-regular fa-eye homeProductCommpnIConButton viewItemButton" onClick={(e)=>handleShowProductClick(e, productData.id, productData.title, productData.category)}></i>
                         <div className="homeProductPosterContainer">
-                          <img src={productData?.images.LinkOne} alt="ProductPoster" className="ProductPoster" />
+                          <img loading="lazy" src={productData?.images.LinkOne} alt="ProductPoster" className="ProductPoster" />
                         </div>
                         <div className="homeProduct__InformationContainer">
                           <span className='homeProduct__discountPercentageText'>{productData?.discountPercentage} % Off</span>
