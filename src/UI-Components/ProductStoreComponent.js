@@ -4,6 +4,7 @@ import WebNavBarComponent from './WebNavBarComponent'
 import HeaderComponents from './HeaderComponents'
 import Loader from './Loader'
 import axios from 'axios'
+import RatingCompo from './RatingCompo'
 function ProductStoreComponent() {
   const navigateTO = useNavigate()
   const [AllProduct, setAllProduct] = useState([])
@@ -46,7 +47,7 @@ function ProductStoreComponent() {
 
   const handleFilterOPTIONSClick = (e) => {
     e.preventDefault();
-    setCurrentCategoryProduct(AllProduct.filter((products) => (products.category === category) && (products.brand === e.currentTarget.textContent.split(" ")[0] || products.rating >= e.currentTarget.textContent.split(" ")[0] ||Number(products.discountPercentage) <= Number(e.currentTarget.textContent.split(" ")[0]))));
+    setCurrentCategoryProduct(AllProduct.filter((products) => (products.category === category) && (products.brand === e.currentTarget.textContent.split(" ")[0] || products.rating >= e.currentTarget.textContent.split(" ")[0] || Number(products.discountPercentage) <= Number(e.currentTarget.textContent.split(" ")[0]))));
     scrollToTOP();
 
   }
@@ -64,7 +65,7 @@ function ProductStoreComponent() {
     });
     scrollToTOP();
   }
-  const handleShowProductClick = (e, ID, title, category)=>{
+  const handleShowProductClick = (e, ID, title, category) => {
     e.preventDefault();
     navigateTO(`/products/${title.slice(0, 5)}${category}-${ID}`)
   }
@@ -125,11 +126,12 @@ function ProductStoreComponent() {
                     currentCategoryProduct?.map((productData, index) => {
                       return <div className="homeProduct commonContainerProduct" key={productData.id}>
                         <i className="fa-regular fa-heart homeProductCommpnIConButton wishListButton"></i>
-                        <i className="fa-regular fa-eye homeProductCommpnIConButton viewItemButton" onClick={(e)=>handleShowProductClick(e, productData.id, productData.title, productData.category)}></i>
+                        <i className="fa-regular fa-eye homeProductCommpnIConButton viewItemButton" onClick={(e) => handleShowProductClick(e, productData.id, productData.title, productData.category)}></i>
                         <div className="homeProductPosterContainer">
                           <img loading="lazy" src={productData?.images.LinkOne} alt="ProductPoster" className="ProductPoster" />
                         </div>
                         <div className="homeProduct__InformationContainer">
+                          <RatingCompo rating={productData?.rating}/>
                           <span className='homeProduct__discountPercentageText'>{productData?.discountPercentage} % Off</span>
                           <button className='addToCartButton'>Add To Cart</button>
                         </div>

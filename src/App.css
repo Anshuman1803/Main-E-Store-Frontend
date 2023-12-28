@@ -580,7 +580,19 @@ input[type="password"] {
   justify-content: flex-start;
   position: relative;
 }
+.item_ratingContainer{
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 5px;
+}
 
+.ratingICON{
+  font-size: 16px;
+  color: #ffe234;
+}
 .protectedAreaContainer {
   width: 100%;
   position: absolute;

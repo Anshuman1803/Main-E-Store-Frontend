@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Loader from './Loader';
 import { ToastContainer } from 'react-toastify';
+import RatingCompo from './RatingCompo';
 function HomeProductSlider({ category, title }) {
     const [isLoading, setIsloading] = useState(false);
     const [productData, setproductData] = useState([]);
@@ -62,10 +63,11 @@ function HomeProductSlider({ category, title }) {
                                         <img src={product?.images.LinkOne} loading="lazy" alt="ProductPoster" className="ProductPoster" />
                                     </div>
                                     <div className="homeProduct__InformationContainer">
+                                        <RatingCompo rating={product.rating}/>
                                         <span className='homeProduct__discountPercentageText'>{product?.discountPercentage} % Off</span>
                                         <button className='addToCartButton'>
-                                           Add To Cart                                            
-                                            </button>
+                                            Add To Cart
+                                        </button>
                                     </div>
                                 </div>
                             })
