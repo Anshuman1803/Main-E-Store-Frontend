@@ -27,10 +27,25 @@ const ReduxCartSlice = createSlice({
             state.UserCart.isLoggedIN = false;
             state.UserCart.totalAmmount = 0;
             localStorage.removeItem("userDetails", "cartItems", "Total__Quantity")
+        },
+
+        addToCart(state, action) {
+            delete (action.payload._id)
+
+            const productIndex = state.UserCart.cartItems.findIndex((product) => product.id === action.payload.id);
+
+            if (productIndex >= 0) {
+                state.UserCart.cartItems[productIndex].itemQuantity += 1
+            }
+            else {
+                let tempProduct = { ...action.payload, itemQuantity: 1 }
+                state.UserCart.cartItems.push(tempProduct);
+            }
+            localStorage.setItem("cartItems", JSON.stringify(state.UserCart.cartItems));
         }
 
     }
 
 });
-export const { addLoginUser, userLogOut} = ReduxCartSlice.actions
+export const { addLoginUser, userLogOut, addToCart } = ReduxCartSlice.actions
 export default ReduxCartSlice.reducer

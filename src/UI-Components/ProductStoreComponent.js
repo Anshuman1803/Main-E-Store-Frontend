@@ -5,6 +5,9 @@ import HeaderComponents from './HeaderComponents'
 import Loader from './Loader'
 import axios from 'axios'
 import RatingCompo from './RatingCompo'
+import { addToCart } from '../ReduxSlice/CartSlice';
+import { useSelector, useDispatch } from 'react-redux'
+import toast, { Toaster } from 'react-hot-toast';
 function ProductStoreComponent() {
   const navigateTO = useNavigate()
   const [AllProduct, setAllProduct] = useState([])
@@ -13,6 +16,9 @@ function ProductStoreComponent() {
 
   const [currentCategoryProduct, setCurrentCategoryProduct] = useState([]);
   const [isLoading, setIsloading] = useState(false);
+
+  const { isLoggedIN, userDetails } = useSelector((state) => state.MsCart.UserCart);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setIsloading(true)
@@ -70,8 +76,22 @@ function ProductStoreComponent() {
     navigateTO(`/products/${title.slice(0, 5)}${category}-${ID}`)
   }
 
+  const handleAddToCartClick = (e, product) => {
+    e.preventDefault();
+    if (isLoggedIN) {
+      product.userEmail = userDetails[0]?.userEmail
+      toast.success('Item Added Successfully')
+      dispatch(addToCart(product));
+    } else {
+      toast.error("Log In Fist !");
+    }
+  }
   return (
     <>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
       <HeaderComponents />
       <WebNavBarComponent />
 
@@ -131,9 +151,9 @@ function ProductStoreComponent() {
                           <img loading="lazy" src={productData?.images.LinkOne} alt="ProductPoster" className="ProductPoster" />
                         </div>
                         <div className="homeProduct__InformationContainer">
-                          <RatingCompo rating={productData?.rating}/>
+                          <RatingCompo rating={productData?.rating} />
                           <span className='homeProduct__discountPercentageText'>{productData?.discountPercentage} % Off</span>
-                          <button className='addToCartButton'>Add To Cart</button>
+                          <button className='addToCartButton' onClick={(e)=>handleAddToCartClick(e, productData)} >Add To Cart</button>
                         </div>
                       </div>
                     })

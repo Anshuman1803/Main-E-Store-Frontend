@@ -2,12 +2,16 @@ import { memo, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Loader from './Loader';
-import { ToastContainer } from 'react-toastify';
 import RatingCompo from './RatingCompo';
+import { addToCart } from '../ReduxSlice/CartSlice';
+import { useSelector, useDispatch } from 'react-redux'
+import toast, { Toaster } from 'react-hot-toast';
 function HomeProductSlider({ category, title }) {
+    const navigateTO = useNavigate()
     const [isLoading, setIsloading] = useState(false);
     const [productData, setproductData] = useState([]);
-
+    const { isLoggedIN, userDetails } = useSelector((state) => state.MsCart.UserCart);
+    const dispatch = useDispatch();
     useEffect(() => {
         setIsloading(true)
         axios.get(`https://mainstoreapi.onrender.com/api/product/${category}`).then((response) => {
@@ -16,7 +20,6 @@ function HomeProductSlider({ category, title }) {
         });
     }, [category])
 
-    const navigateTO = useNavigate()
     const handleNextBtnClick = (e) => {
         e.preventDefault();
         let box = e.target.previousSibling
@@ -33,20 +36,22 @@ function HomeProductSlider({ category, title }) {
         navigateTO(`/products/${title.slice(0, 5)}${category}-${ID}`)
     }
 
+    const handleAddToCartClick = (e, product) => {
+        e.preventDefault();
+        if (isLoggedIN) {
+            product.userEmail = userDetails[0]?.userEmail
+            toast.success('Item Added Successfully')
+            dispatch(addToCart(product));
+        } else {
+            toast.error("Log In Fist !");
+        }
+    }
 
     return (
         <>
-            <ToastContainer
+            <Toaster
                 position="top-center"
-                autoClose={1500}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
+                reverseOrder={false}
             />
 
             <section className='homeProduct__SliderContainers'>
@@ -63,17 +68,15 @@ function HomeProductSlider({ category, title }) {
                                         <img src={product?.images.LinkOne} loading="lazy" alt="ProductPoster" className="ProductPoster" />
                                     </div>
                                     <div className="homeProduct__InformationContainer">
-                                        <RatingCompo rating={product.rating}/>
+                                        <RatingCompo rating={product.rating} />
                                         <span className='homeProduct__discountPercentageText'>{product?.discountPercentage} % Off</span>
-                                        <button className='addToCartButton'>
+                                        <button className='addToCartButton' onClick={(e) => handleAddToCartClick(e, product)}>
                                             Add To Cart
                                         </button>
                                     </div>
                                 </div>
                             })
                         }
-
-
                     </div>
                 }
                 <i className="fa-solid fa-caret-right rightArrow sliderArrow" onClick={handleNextBtnClick}></i>
