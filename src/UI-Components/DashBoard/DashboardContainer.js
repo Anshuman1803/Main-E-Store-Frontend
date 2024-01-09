@@ -33,6 +33,7 @@ function DashboardContainer() {
         <NavLink onClick={handleShowHideSidebar} to='/user/dashboard/wishlist' className="dashboard__sidebarItems"><i className="fa-solid fa-heart dashboard__sidebarItemsICON"></i>WishList</NavLink>
         <NavLink onClick={handleShowHideSidebar} to='/user/dashboard/history' className="dashboard__sidebarItems"><i className="fa-solid fa-clock-rotate-left dashboard__sidebarItemsICON"></i>History</NavLink>
         <button className='signoutButton' onClick={() => dispatch(userLogOut())}>Sign Out</button>
+        <button className='continueshopingButton' onClick={() => navigateTo("/")}>continue shopping</button>
       </aside>
       <div className='outletContainer'>
         <Outlet />

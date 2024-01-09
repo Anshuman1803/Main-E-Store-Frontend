@@ -7,7 +7,7 @@ import Loader from '../Loader';
 import { addLoginUser } from '../../ReduxSlice/CartSlice';
 
 function UserLogIn() {
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigateTo = useNavigate()
   const [IsUserLoading, setIsUserLoading] = useState(false)
   const [IsShowPass, setIsShowPass] = useState(false);
@@ -75,7 +75,7 @@ const dispatch = useDispatch();
               "userPassword": "",
             })
           }, 4000);
-        }else{
+        } else {
           toast.error('User Not Registred', {
             position: "top-center",
             autoClose: 3000,
@@ -123,7 +123,7 @@ const dispatch = useDispatch();
         </div>
 
         <div className="inputBox">
-          <input type={IsShowPass ? "text" : "password"} name='userPassword' id='userPassword' placeholder='Enter Your Password' className='inputFilelds' value={userDetails.userPassword} onChange={handleOnChangeInput} autoComplete='userPassword'/>
+          <input type={IsShowPass ? "text" : "password"} name='userPassword' id='userPassword' placeholder='Enter Your Password' className='inputFilelds' value={userDetails.userPassword} onChange={handleOnChangeInput} autoComplete='userPassword' />
 
           <i className={`fa-regular ${IsShowPass ? "fa-eye-slash" : "fa-eye"} showPassBtnIcon`} onClick={handleClickShowPassword}></i>
           {Message.IsPassMsgActive && <p className='inputErrorMsg'>{Message.msgVal}<i className="fa-solid fa-triangle-exclamation"></i> </p>}

@@ -580,7 +580,8 @@ input[type="password"] {
   justify-content: flex-start;
   position: relative;
 }
-.item_ratingContainer{
+
+.item_ratingContainer {
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -589,10 +590,11 @@ input[type="password"] {
   gap: 5px;
 }
 
-.ratingICON{
+.ratingICON {
   font-size: 16px;
   color: #ffe234;
 }
+
 .protectedAreaContainer {
   width: 100%;
   position: absolute;
@@ -967,6 +969,26 @@ input[type="password"] {
   color: tomato;
 }
 
+.continueshopingButton {
+  border: none;
+  outline: none;
+  display: block;
+  width: 90%;
+  padding: 0.6em;
+  font-size: 18px;
+  font-weight: 400;
+  border-radius: 30px;
+  background-color: #1979cc;
+  color: white;
+  margin: 30px auto;
+  text-transform: uppercase;
+}
+
+.continueshopingButton:hover {
+  cursor: pointer;
+  background-color: #156ab4;
+}
+
 .signoutButton {
   border: none;
   outline: none;
@@ -1079,24 +1101,6 @@ input[type="password"] {
   font-size: 28px;
   text-transform: capitalize;
   color: #4f40fa;
-}
-
-.continueshopingButton {
-  border: none;
-  outline: none;
-  width: 300px;
-  padding: 0.3em;
-  font-size: 18px;
-  font-weight: 400;
-  border-radius: 30px;
-  background-color: #1979cc;
-  color: white;
-  text-transform: uppercase;
-}
-
-.continueshopingButton:hover {
-  cursor: pointer;
-  background-color: #156ab4;
 }
 
 .userProfile__UserBox {
@@ -1813,7 +1817,120 @@ input::-webkit-inner-spin-button {
   color: #dc3545;
 }
 
-@media screen and (max-width : 1024px) {
+/* Userdashboard UserProfile Container */
+.userDashboard_UserInformationContainer {
+  width: 100%;
+  border: 2px solid red;
+  min-height: calc(100vh - 60px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 450px));
+  align-items: flex-start;
+  justify-content: center;
+  gap: 30px;
+
+}
+
+.UserInformationContainer__userInfoCard {
+  min-height: 350px;
+  border-radius: 5px;
+  width: 100%;
+  margin: 10px 0px;
+  background-color: rgba(255, 255, 255, 0.171);
+  border: 1px solid rgba(255, 255, 255, 0.349);
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.UserInformation_ItemBox {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 0.2em 0em 0.2em 1em;
+  gap: 5px;
+  border-bottom: 1px solid #f974166e;
+
+}
+
+.ItemBox_labelText {
+  font-weight: 600;
+  font-size: 20px;
+  color: #f97316;
+}
+
+.itemBox_userName {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.userDeleteAccount {
+  font-size: 18px;
+  width: 200px;
+  margin: 20px auto;
+  display: block;
+  padding: 0.6em;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  background-color: #dc3545;
+  color: white;
+}
+
+.userDeleteAccount:hover {
+  cursor: pointer;
+  background-color: #c53140;
+}
+
+.UserInformationContainer__UpdatePasswordCard {
+  width: 100%;
+  margin: 10px 0px;
+  background-color: rgba(255, 255, 255, 0.363);
+  min-height: 350px;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.UpdatePasswordCard__ItemBox {
+  height: 80px;
+  margin-bottom: 10px;
+  padding: 0.2em 0.5em;
+}
+
+.UpdatePassword_itemBox__Item {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  padding: 0em 0.5em;
+  border: none;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.767);
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.userUpdatePasswordButton {
+  width: 200px;
+  display: block;
+  margin: 5px auto;
+  padding: 0.6em;
+  font-size: 18px;
+  font-weight: 500;
+  background-color: #5ba75b;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 50px;
+}
+
+.userUpdatePasswordButton:hover {
+  cursor: pointer;
+  background-color: #388e3c;
+}
+
+@media screen and (max-width : 1025px) {
   .adminProfileContainer__heading {
     font-size: 3vw;
   }
@@ -1827,7 +1944,7 @@ input::-webkit-inner-spin-button {
   }
 }
 
-@media screen and (max-width: 771px) {
+@media screen and (max-width: 772px) {
 
   .webNavBarContainer,
   .userProfilecontainer {
@@ -1914,13 +2031,13 @@ input::-webkit-inner-spin-button {
   }
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 651px) {
   .activeDashboard__sidebar {
     width: 60%;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 601px) {
   .searchInputContainer {
     width: 98%;
   }
@@ -1936,9 +2053,18 @@ input::-webkit-inner-spin-button {
   .singleProduct__description {
     font-size: 2.5vw;
   }
+
+  .userDashboard_UserInformationContainer {
+    grid-template-columns: repeat(auto-fit, minmax(95%, 95%));
+  }
+
+  .UserInformation_ItemBox {
+    gap: 5px;
+    min-height: fit-content;
+  }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 426px) {
   .appHeader {
     padding: 0em 0.5em;
   }
@@ -2022,7 +2148,7 @@ input::-webkit-inner-spin-button {
   }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 376px) {
 
   .singleProduct___title {
     font-size: 5vw;
@@ -2031,4 +2157,9 @@ input::-webkit-inner-spin-button {
   .singleProduct__description {
     font-size: 4.5vw;
   }
+
+  .itemBox_userName {
+    font-size: 18px;
+  }
+
 }
