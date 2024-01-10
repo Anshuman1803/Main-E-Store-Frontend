@@ -6,7 +6,8 @@ import axios from "axios"
 import Loader from "../Loader"
 
 function UpdatePassword({ userPost, validUser }) {
-    const [Isloading, Setisloading] = useState(false)
+    const [Isloading, Setisloading] = useState(false);
+    const [IsShowPass, setIsShowPass] = useState(false);
     const { userDetails } = useSelector((state) => state.MsCart.UserCart);
     const [updatedData, SetUpdatedData] = useState({
         userEmail: "",
@@ -35,9 +36,25 @@ function UpdatePassword({ userPost, validUser }) {
             ...updatedData, [e.target.name]: e.target.value.trim()
         })
     }
+
+    const handleClickShowPassword = (e) => {
+        setIsShowPass(!IsShowPass);
+    }
+
+
     const handleUpdatePasswordClick = (e) => {
         e.preventDefault();
-        if (!validator.isEmail(updatedData.userEmail.trim()) || updatedData.userEmail !== userDetails[0].userEmail) {
+        let matchEmail;
+        if (validUser && userPost === "admin") {
+            matchEmail = updatedData.userEmail !== JSON.parse(localStorage.getItem("Admin"))[0].userEmail
+
+        } else if (validUser & userPost === "user") {
+            matchEmail = updatedData.userEmail !== userDetails[0]?.userEmail
+        } else {
+            matchEmail = false
+        }
+
+        if (!validator.isEmail(updatedData.userEmail) || matchEmail) {
             setErrors({
                 userEmailError: true,
                 userPasswordError: false,
@@ -78,10 +95,24 @@ function UpdatePassword({ userPost, validUser }) {
                 });
 
             }
-            // else if (userPost === 'admin') {
-            //     console.log(updatedData)
-
-            // }
+            else if (userPost === 'admin') {
+                Setisloading(true)
+                axios.patch("https://mainstoreapi.onrender.com/api/admin/update-password", updatedData).then((response) => {
+                    if (response.data.resMsg === "Password Updated") {
+                        toast.success("User Password Updated");
+                        Setisloading(false);
+                        SetUpdatedData({
+                            userEmail: "",
+                            userPassword: "",
+                            ConfirmPassword: "",
+                            validUser: validUser,
+                        })
+                    } else {
+                        toast.success("Something went wrong");
+                        Setisloading(false)
+                    }
+                });
+            }
         }
     }
 
@@ -91,26 +122,30 @@ function UpdatePassword({ userPost, validUser }) {
                 position="top-center"
                 reverseOrder={false}
             />
-            <div className="UserInformationContainer__UpdatePasswordCard">
+            <form className="UserInformationContainer__UpdatePasswordCard">
                 {Isloading && <Loader />}
 
                 <div className="UpdatePasswordCard__ItemBox">
-                    <input type="text" name='userEmail' id='userEmail' placeholder='Enter Your Email Address' className='UpdatePassword_itemBox__Item' onChange={handleOneChangeInput} value={updatedData.userEmail} />
+                    <input type="email" name='userEmail' placeholder='Enter Your Email Address' className='UpdatePassword_itemBox__Item' onChange={handleOneChangeInput} value={updatedData.userEmail} autoComplete='user' />
                     {inputErros.userEmailError && <p className='inputErrorMsg'>{inputErros.inputErrorMsg}</p>}
                 </div>
 
                 <div className="UpdatePasswordCard__ItemBox">
-                    <input type="text" name='userPassword' id='userPassword' placeholder='Enter New Password ' className='UpdatePassword_itemBox__Item' onChange={handleOneChangeInput} value={updatedData.userPassword} />
+                    <input type={IsShowPass ? "text" : "password"} name='userPassword' placeholder='Enter New Password ' className='UpdatePassword_itemBox__Item' onChange={handleOneChangeInput} value={updatedData.userPassword} autoComplete='new-password' />
+
+                    <i className={`fa-regular ${IsShowPass ? "fa-eye-slash" : "fa-eye"} showPassBtnIcon`} onClick={handleClickShowPassword}></i>
+
                     {inputErros.userPasswordError && <p className='inputErrorMsg'>{inputErros.inputErrorMsg}</p>}
                 </div>
 
                 <div className="UpdatePasswordCard__ItemBox">
-                    <input type="text" name='ConfirmPassword' id='ConfirmPassword' placeholder='Confirm Password' className='UpdatePassword_itemBox__Item' onChange={handleOneChangeInput}  value={updatedData.ConfirmPassword} />
+                    <input type={IsShowPass ? "text" : "password"} name='ConfirmPassword' placeholder='Confirm Password' className='UpdatePassword_itemBox__Item' onChange={handleOneChangeInput} value={updatedData.ConfirmPassword} autoComplete='new-password' />
+
                     {inputErros.ConfirmPasswordError && <p className='inputErrorMsg'>{inputErros.inputErrorMsg}</p>}
                 </div>
 
                 <button className='userUpdatePasswordButton' onClick={handleUpdatePasswordClick}>Update</button>
-            </div>
+            </form>
         </>
     )
 }

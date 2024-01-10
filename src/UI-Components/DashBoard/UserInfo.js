@@ -30,7 +30,7 @@ function UserInfo() {
           <button className='userDeleteAccount'>Delete Account</button>
         </div>
 
-        <UpdatePassword userPost="user" validUser= "true"/>
+        <UpdatePassword userPost="user" validUser= {true}/>
 
       </div>
 

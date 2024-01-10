@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { adminLogOut } from '../../ReduxSlice/AdminSlice';
 import axios from 'axios'
 import Loader from '../Loader';
+import UpdatePassword from '../UserComponents/UpdatePassword';
 function AdminDashboardContainer() {
   const navigateTo = useNavigate()
   const dispatch = useDispatch();
@@ -97,8 +98,8 @@ function AdminDashboardContainer() {
               </div>
 
 
+              <UpdatePassword userPost="admin" validUser={true}/>
             </div>
-
           </div>}
         </>
         }

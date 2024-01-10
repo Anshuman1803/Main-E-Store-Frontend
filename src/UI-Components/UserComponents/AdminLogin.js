@@ -6,14 +6,14 @@ import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios'
 import Loader from '../Loader';
-
+import UpdatePassword from "./UpdatePassword"
 function AdminLogin() {
     const dispatch = useDispatch();
     const navigateTo = useNavigate()
     const [IsUserLoading, setIsUserLoading] = useState(false)
     const [IsShowPass, setIsShowPass] = useState(false);
     const [Message, setMessage] = useState({ "IsNameMsgActive": false, "IsPassMsgActive": false, "IsEmailMsgActive": false, "msgVal": "" });
-
+    const [OpenPopup, SetOpenPopup] = useState(false)
     const [adminDetails, setadminDetails] = useState({
         "userName": "",
         "userEmail": "",
@@ -118,30 +118,39 @@ function AdminLogin() {
                 pauseOnHover
                 theme="light"
             />
+            {
+                OpenPopup ? <div className='updatePasswordPopup'>
+                    <h2 className='updatePasswordPopup_heading'>
+                        Update Your Password
+                        <i className="fa-solid fa-xmark" onClick={() => SetOpenPopup(false)}></i>
+                    </h2>
+                    <UpdatePassword userPost="admin" validUser={false} />
+                </div> : <form className='userForm adminLOGIN__form'>
+                    <h2 className='userForm--heading'>Admin - Get Access</h2>
+                    <div className="inputBox">
+                        <input type="text" name='userName' id='userName' placeholder='Enter Your User Name' className='inputFilelds' value={adminDetails.userName} onChange={handleOnChangeInput} />
 
-            <form className='userForm adminLOGIN__form'>
-                <h2 className='userForm--heading'>Admin - Get Access</h2>
-                <div className="inputBox">
-                    <input type="text" name='userName' id='userName' placeholder='Enter Your User Name' className='inputFilelds' value={adminDetails.userName} onChange={handleOnChangeInput} />
+                        {Message.IsNameMsgActive && <p className='inputErrorMsg'>{Message.msgVal}<i className="fa-solid fa-triangle-exclamation"></i></p>}
+                    </div>
+                    <div className="inputBox">
+                        <input type="email" name='userEmail' id='userEmail' placeholder='Enter Your Email' className='inputFilelds' value={adminDetails.userEmail} onChange={handleOnChangeInput} />
 
-                    {Message.IsNameMsgActive && <p className='inputErrorMsg'>{Message.msgVal}<i className="fa-solid fa-triangle-exclamation"></i></p>}
-                </div>
-                <div className="inputBox">
-                    <input type="email" name='userEmail' id='userEmail' placeholder='Enter Your Email' className='inputFilelds' value={adminDetails.userEmail} onChange={handleOnChangeInput} />
+                        {Message.IsEmailMsgActive && <p className='inputErrorMsg'>{Message.msgVal}<i className="fa-solid fa-triangle-exclamation"></i></p>}
+                    </div>
 
-                    {Message.IsEmailMsgActive && <p className='inputErrorMsg'>{Message.msgVal}<i className="fa-solid fa-triangle-exclamation"></i></p>}
-                </div>
+                    <div className="inputBox">
+                        <input type={IsShowPass ? "text" : "password"} name='userPassword' id='userPassword' placeholder='Enter Your Password' className='inputFilelds' value={adminDetails.userPassword} onChange={handleOnChangeInput} autoComplete='userPassword' />
 
-                <div className="inputBox">
-                    <input type={IsShowPass ? "text" : "password"} name='userPassword' id='userPassword' placeholder='Enter Your Password' className='inputFilelds' value={adminDetails.userPassword} onChange={handleOnChangeInput} autoComplete='userPassword' />
+                        <i className={`fa-regular ${IsShowPass ? "fa-eye-slash" : "fa-eye"} showPassBtnIcon`} onClick={handleClickShowPassword}></i>
+                        {Message.IsPassMsgActive && <p className='inputErrorMsg'>{Message.msgVal}<i className="fa-solid fa-triangle-exclamation"></i> </p>}
+                    </div>
+                    <p className="forgetPasswordLink" onClick={() => SetOpenPopup(true)}>Forget Password ?</p>
+                    <button className='userForm--Buttons' onClick={handleSingInClick}>Sign In</button>
 
-                    <i className={`fa-regular ${IsShowPass ? "fa-eye-slash" : "fa-eye"} showPassBtnIcon`} onClick={handleClickShowPassword}></i>
-                    {Message.IsPassMsgActive && <p className='inputErrorMsg'>{Message.msgVal}<i className="fa-solid fa-triangle-exclamation"></i> </p>}
-                </div>
-                <button className='userForm--Buttons' onClick={handleSingInClick}>Sign In</button>
+                    <Link to={'/user/login'} className='navigateButton'> User ? Log In As User </Link>
+                </form>
+            }
 
-                <Link to={'/user/login'} className='navigateButton'> User ? Log In As User </Link>
-            </form>
         </>
     )
 }

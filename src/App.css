@@ -5,6 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto Slab', serif;
+  user-select: none;
 }
 
 ::-webkit-scrollbar {
@@ -436,7 +437,7 @@ svg {
 }
 
 .adminLOGIN__form {
-  height: 430px;
+  height: 450px;
 }
 
 @keyframes fadeIn {
@@ -458,7 +459,7 @@ svg {
 
 .inputBox {
   width: 90%;
-  margin: 10px auto 0px auto;
+  margin: 8px auto 0px auto;
   height: 75px;
   position: relative;
 }
@@ -478,7 +479,6 @@ svg {
 }
 
 .inputFilelds {
-
   border: none;
   outline: none;
   width: 100%;
@@ -518,6 +518,14 @@ input[type="password"] {
   color: tomato;
 }
 
+.forgetPasswordLink {
+  text-align: center;
+  font-size: 18px;
+  color: #ff2400;
+  font-weight: 500;
+  transition: all 0.3s ease-in;
+}
+
 .userForm--Buttons {
   border: none;
   outline: none;
@@ -551,11 +559,58 @@ input[type="password"] {
   transition: all 0.3s ease-in;
 }
 
-.navigateButton:hover {
+.navigateButton:hover,
+.forgetPasswordLink:hover {
   cursor: pointer;
   transform: scale(1.1);
 }
 
+.updatePasswordPopup {
+  border-radius: 5px;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  padding: 0em 0.6em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.UpdatePasswordCard__ItemBox .showPassBtnIcon{
+  /* border: 2px solid red; */
+  top: 10px;
+  right: 9px;
+  height: 35px;
+}
+.updatePasswordPopup .UserInformationContainer__UpdatePasswordCard {
+  width: 450px;
+  backdrop-filter: blur(30px);
+}
+
+.updatePasswordPopup_heading {
+  width: 450px;
+  color: black;
+  border-bottom: 1px solid white;
+  padding: 0.6em 0em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+
+.updatePasswordPopup_heading i {
+  transition: color 0.2s ease-in-out;
+}
+
+.updatePasswordPopup_heading i:hover {
+  cursor: pointer;
+  color: tomato;
+
+}
+
+/*  */
 
 .AllProductBox {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
@@ -1052,7 +1107,9 @@ input[type="password"] {
   justify-content: center;
   gap: 20px;
 }
-
+.admindashboard_cardContainer .UserInformationContainer__UpdatePasswordCard{
+  width: 450px;
+}
 .applicationCounterCards {
   width: 100%;
   min-height: 85vh;
@@ -1890,6 +1947,8 @@ input::-webkit-inner-spin-button {
   min-height: 350px;
   border-radius: 5px;
   position: relative;
+  animation: fadeIn 0.7s ease-in-out;
+  transition: all 0.7s ease-in;
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
 
@@ -1897,6 +1956,7 @@ input::-webkit-inner-spin-button {
   height: 80px;
   margin-bottom: 10px;
   padding: 0.2em 0.5em;
+  position: relative;
 }
 
 .UpdatePassword_itemBox__Item {
@@ -2062,6 +2122,16 @@ input::-webkit-inner-spin-button {
     gap: 5px;
     min-height: fit-content;
   }
+
+  .updatePasswordPopup .UserInformationContainer__UpdatePasswordCard {
+    width: 100%;
+  }
+
+  .updatePasswordPopup_heading {
+    width: 100%;
+    font-size: 20px;
+  }
+
 }
 
 @media screen and (max-width: 426px) {

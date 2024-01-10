@@ -5,14 +5,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios'
 import Loader from '../Loader';
 import { addLoginUser } from '../../ReduxSlice/CartSlice';
-
+import UpdatePassword from "./UpdatePassword"
 function UserLogIn() {
   const dispatch = useDispatch();
   const navigateTo = useNavigate()
   const [IsUserLoading, setIsUserLoading] = useState(false)
   const [IsShowPass, setIsShowPass] = useState(false);
   const [Message, setMessage] = useState({ "IsPassMsgActive": false, "IsEmailMsgActive": false, "msgVal": "" });
-
+  const [OpenPopup, SetOpenPopup] = useState(false)
   const [userDetails, setUserDetails] = useState({
     "userEmail": "",
     "userPassword": "",
@@ -95,7 +95,6 @@ function UserLogIn() {
           }, 4000);
         }
       })
-      // 
     }
   }
   return (
@@ -114,25 +113,39 @@ function UserLogIn() {
         theme="light"
       />
 
-      <form className='userForm userLOGIN__form'>
-        <h2 className='userForm--heading'>Get access to your Orders</h2>
-        <div className="inputBox">
-          <input type="email" name='userEmail' id='userEmail' placeholder='Enter Your Email' className='inputFilelds' value={userDetails.userEmail} onChange={handleOnChangeInput} />
+      {
+        OpenPopup ?
 
-          {Message.IsEmailMsgActive && <p className='inputErrorMsg'>{Message.msgVal}<i className="fa-solid fa-triangle-exclamation"></i></p>}
-        </div>
+          <div className='updatePasswordPopup'>
+            <h2 className='updatePasswordPopup_heading'>
+              Update Your Password
+              <i className="fa-solid fa-xmark" onClick={() => SetOpenPopup(false)}></i>
+            </h2>
+            <UpdatePassword userPost="user" validUser={false} />
+          </div>
 
-        <div className="inputBox">
-          <input type={IsShowPass ? "text" : "password"} name='userPassword' id='userPassword' placeholder='Enter Your Password' className='inputFilelds' value={userDetails.userPassword} onChange={handleOnChangeInput} autoComplete='userPassword' />
+          :
+          <form className='userForm userLOGIN__form'>
+            <h2 className='userForm--heading'>Get access to your Orders</h2>
+            <div className="inputBox">
+              <input type="email" name='userEmail' id='userEmail' placeholder='Enter Your Email' className='inputFilelds' value={userDetails.userEmail} onChange={handleOnChangeInput} />
 
-          <i className={`fa-regular ${IsShowPass ? "fa-eye-slash" : "fa-eye"} showPassBtnIcon`} onClick={handleClickShowPassword}></i>
-          {Message.IsPassMsgActive && <p className='inputErrorMsg'>{Message.msgVal}<i className="fa-solid fa-triangle-exclamation"></i> </p>}
-        </div>
-        <button className='userForm--Buttons' onClick={handleSingInClick}>Sign In</button>
+              {Message.IsEmailMsgActive && <p className='inputErrorMsg'>{Message.msgVal}<i className="fa-solid fa-triangle-exclamation"></i></p>}
+            </div>
 
-        <Link to={'/user/register'} className='navigateButton'>New Here? Create an account </Link>
-        <Link to={'/user/admin'} className='navigateButton'>Admin ? Log In As Admin </Link>
-      </form>
+            <div className="inputBox">
+              <input type={IsShowPass ? "text" : "password"} name='userPassword' id='userPassword' placeholder='Enter Your Password' className='inputFilelds' value={userDetails.userPassword} onChange={handleOnChangeInput} autoComplete='userPassword' />
+
+              <i className={`fa-regular ${IsShowPass ? "fa-eye-slash" : "fa-eye"} showPassBtnIcon`} onClick={handleClickShowPassword}></i>
+              {Message.IsPassMsgActive && <p className='inputErrorMsg'>{Message.msgVal}<i className="fa-solid fa-triangle-exclamation"></i> </p>}
+            </div>
+            <p className="forgetPasswordLink" onClick={() => SetOpenPopup(true)}>Forget Password ?</p>
+            <button className='userForm--Buttons' onClick={handleSingInClick}>Sign In</button>
+
+            <Link to={'/user/register'} className='navigateButton'>New Here? Create an account </Link>
+            <Link to={'/user/admin'} className='navigateButton'>Admin ? Log In As Admin </Link>
+          </form>
+      }
     </>
   )
 }
