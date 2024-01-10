@@ -2131,6 +2131,9 @@ input::-webkit-inner-spin-button {
     width: 100%;
     font-size: 20px;
   }
+  .admindashboard_cardContainer .UserInformationContainer__UpdatePasswordCard{
+    width: 90%;
+  }
 
 }
 
@@ -2231,5 +2234,7 @@ input::-webkit-inner-spin-button {
   .itemBox_userName {
     font-size: 18px;
   }
-
+  .admindashboard_cardContainer .UserInformationContainer__UpdatePasswordCard{
+    width: 95%;
+  }
 }
